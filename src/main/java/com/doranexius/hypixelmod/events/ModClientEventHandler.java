@@ -47,6 +47,7 @@ import org.lwjgl.opengl.GL11;
 import com.doranexius.hypixelmod.*;
 import com.doranexius.hypixelmod.modules.ModuleManager;
 import com.doranexius.hypixelmod.modules.render.MobESP;
+import com.doranexius.hypixelmod.modules.render.Tracers;
 import com.doranexius.hypixelmod.modules.render.ChestESP;
 import com.doranexius.hypixelmod.proxy.ClientProxy;
 import com.doranexius.hypixelmod.renderUtils.RenderBoundingBox;
@@ -92,6 +93,10 @@ public class ModClientEventHandler {
 		}
 		if (ModuleManager.getModList().get(1).isToggled()) {
 			ChestESP.drawBlockOutline(0, 255, 0);
+		}
+		if (ModuleManager.getModList().get(2).isToggled()) {
+			Tracers.drawTracers();
+			System.out.println("Drawing tracers");
 		}
 		
 		GL11.glEnable(GL11.GL_LIGHTING);

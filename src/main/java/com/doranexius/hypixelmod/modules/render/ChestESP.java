@@ -35,6 +35,7 @@ public class ChestESP extends Module {
 				lastZ = -block.getPos().getZ()-0.5;
 			}
 		}
+		GL11.glTranslated(lastX+renderManager.viewerPosX, lastY+renderManager.viewerPosY, lastZ+renderManager.viewerPosZ);
 	}
 	
 }

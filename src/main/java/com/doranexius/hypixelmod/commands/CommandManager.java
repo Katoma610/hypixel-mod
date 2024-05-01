@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.doranexius.hypixelmod.events.ModClientEventHandler;
 import com.doranexius.hypixelmod.modules.ModuleManager;
+import com.doranexius.hypixelmod.modules.render.Fullbright;
 
 import ibxm.Player;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -59,6 +60,8 @@ public class CommandManager implements ICommand {
 		commandList.put("modulelist", "Prints the list of all modules.");
 		commandList.put("commandlist", "Prints this list.");
 		commandList.put("chestesp", "Toggles ChestESP.");
+		commandList.put("tracers", "Toggles Tracers.");
+		commandList.put("fullbright", "Toggles Fullbright.");
 		
 		if (sender instanceof EntityPlayer) {
 			if (args.length > 0) {
@@ -73,12 +76,18 @@ public class CommandManager implements ICommand {
 				} else if (args[0].equals("chestesp")) {
 					ModuleManager.getModList().get(1).toggle();
 					PrintUtils.print(String.format("§6[Hypixel Mod]§6§3 Set ChestESP to: %s", ModuleManager.getModList().get(1).isToggled()));
+				} else if (args[0].equals("tracers")) {
+					ModuleManager.getModList().get(2).toggle();
+					PrintUtils.print(String.format("§6[Hypixel Mod]§6§3 Set Tracers to: %s", ModuleManager.getModList().get(2).isToggled()));
+				} else if (args[0].equals("fullbright")) {
+					Fullbright.toggleFullbright();
+					PrintUtils.print(String.format("§6[Hypixel Mod]§6§3 Set Fullbright to: %s", Fullbright.isFBToggled()));
 				} else {
 					PrintUtils.print("§6[Hypixel Mod]§6§c Invalid argument(s) for command! Type /hypixelmod commandlist for help!");
 				}
 				
 			} else {
-				PrintUtils.print("§6[Hypixel Mod]§6§3 This is a main command of Hypixel Mod! Current implemented modules: MobESP, ChestESP.");
+				PrintUtils.print("§6[Hypixel Mod]§6§3 This is a main command of Hypixel Mod! Current implemented modules: MobESP, ChestESP, Tracers.");
 			}
 		}
 	}

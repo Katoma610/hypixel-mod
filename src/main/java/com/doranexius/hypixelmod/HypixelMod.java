@@ -4,7 +4,9 @@ import com.doranexius.hypixelmod.commands.CommandManager;
 import com.doranexius.hypixelmod.events.ModClientEventHandler;
 import com.doranexius.hypixelmod.modules.ModuleManager;
 import com.doranexius.hypixelmod.modules.render.ChestESP;
+import com.doranexius.hypixelmod.modules.render.Fullbright;
 import com.doranexius.hypixelmod.modules.render.MobESP;
+import com.doranexius.hypixelmod.modules.render.Tracers;
 import com.doranexius.hypixelmod.proxy.CommonProxy;
 
 import net.minecraft.client.Minecraft;
@@ -36,6 +38,8 @@ public class HypixelMod
     	// RENDER Modules
     	ModuleManager.newMod(new MobESP());
     	ModuleManager.newMod(new ChestESP());
+    	ModuleManager.newMod(new Tracers());
+    	ModuleManager.newMod(new Fullbright());
     }
     
     @EventHandler
