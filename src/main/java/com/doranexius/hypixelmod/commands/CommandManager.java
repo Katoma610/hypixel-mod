@@ -77,7 +77,7 @@ public class CommandManager implements ICommand {
 					PrintUtils.print(String.format("§6[Hypixel Mod]§6§3 Set Tracers to: %s", ModuleManager.getModList().get(2).isToggled()));
 				} else if (args[0].equals("fullbright")) {
 					//Fullbright.toggleFullbright();
-					PrintUtils.print(String.format("§6[Hypixel Mod]§6§3 Set Fullbright to: %s", Fullbright.isFBToggled()));
+					//PrintUtils.print(String.format("§6[Hypixel Mod]§6§3 Set Fullbright to: %s", Fullbright.isFBToggled()));
 				} else {
 					PrintUtils.print("§6[Hypixel Mod]§6§c Invalid argument(s) for command! Type /hypixelmod commandlist for help!");
 				}

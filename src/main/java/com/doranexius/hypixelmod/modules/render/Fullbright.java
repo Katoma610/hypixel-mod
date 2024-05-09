@@ -25,8 +25,13 @@ public class Fullbright extends Module{
 		isToggled = !isToggled;
 	}
 	
-	public static boolean isFBToggled() {
+	@Override
+	public boolean isToggled() {
 		return isToggled;
 	}
+	
+//	public static boolean isFBToggled() {
+//		return isToggled;
+//	}
 
 }
