@@ -1,4 +1,4 @@
-package com.doranexius.hypixelmod.modules.render;
+package com.doranexius.hypixelmod.modules.render.esp;
 
 import org.lwjgl.opengl.GL11;
 
@@ -19,7 +19,7 @@ public class ChestESP extends Module {
 		super("ChestESP", Category.RENDER);
 	}
 	
-	public static void drawBlockOutline(double r, double g, double b) {
+	public static void drawBlockOutline() {
 		RenderManager renderManager = Minecraft.getMinecraft().getRenderManager();
 		
 		double lastX = -renderManager.viewerPosX;
@@ -29,7 +29,7 @@ public class ChestESP extends Module {
 		for (TileEntity block : Minecraft.getMinecraft().theWorld.loadedTileEntityList) {
 			if (block instanceof TileEntityChest) {
 				GL11.glTranslated(lastX + block.getPos().getX()+0.5, lastY + block.getPos().getY(), lastZ + block.getPos().getZ()+0.5);
-				RenderBoundingBox.renderBB(1, 1, r, g, b);
+				RenderBoundingBox.renderBB(1, 1, 0, 255, 0);
 				lastX = -block.getPos().getX()-0.5;
 				lastY = -block.getPos().getY();
 				lastZ = -block.getPos().getZ()-0.5;

@@ -2,7 +2,6 @@ package com.doranexius.hypixelmod.renderUtils;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiIngame;
 
 public class RenderGUI extends GuiIngame {

@@ -14,7 +14,8 @@ public class Fullbright extends Module{
 	public static float lastFullbightSetting = Minecraft.getMinecraft().gameSettings.gammaSetting;
 	private static boolean isToggled = false;
 	
-	public static void toggleFullbright() {
+	@Override
+	public void toggle() {
 		if (Minecraft.getMinecraft().gameSettings.gammaSetting != 1000) {
 			Minecraft.getMinecraft().gameSettings.gammaSetting = 1000;
 		} else {

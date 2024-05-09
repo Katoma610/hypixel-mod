@@ -17,11 +17,6 @@ public class Module {
 	
 	public void toggle() {
 		toggled = !toggled;
-//		if (toggled) {
-//			onEnable();
-//		} else {
-//			onDisable();
-//		}
 	}
 	
 	public void onEnable() {}
@@ -39,6 +34,10 @@ public class Module {
 	
 	public boolean isToggled() {
 		return toggled;
+	}
+	
+	public Category getCategory() {
+		return category;
 	}
 
 	

@@ -1,4 +1,4 @@
-package com.doranexius.hypixelmod.modules.render;
+package com.doranexius.hypixelmod.modules.render.esp;
 
 import org.lwjgl.opengl.GL11;
 
@@ -23,7 +23,7 @@ public class MobESP extends Module {
 		super("MobESP", Category.RENDER);
 	}
 	
-	public static void drawESPBoxes() {
+	public static void drawMobESP() {
 		RenderManager renderManager = Minecraft.getMinecraft().getRenderManager();
 		double lastX = -renderManager.viewerPosX;
 		double lastY = -renderManager.viewerPosY;
@@ -37,9 +37,7 @@ public class MobESP extends Module {
     		
 	    	if(entity instanceof EntitySkeleton) {
 	    		RenderBoundingBox.renderBB(1, 2, 255, 0, 0);
-	    	} else if (entity instanceof EntityPlayer) {
-	    		RenderBoundingBox.renderBB(1, 2, 0, 0, 255);
-			}
+	    	}
 	    }
 	    
 	    GL11.glTranslated(lastX+renderManager.viewerPosX, lastY+renderManager.viewerPosY, lastZ+renderManager.viewerPosZ);

@@ -14,7 +14,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import com.doranexius.hypixelmod.modules.Module;
 import com.doranexius.hypixelmod.modules.ModuleManager;
-import com.doranexius.hypixelmod.modules.render.MobESP;
+import com.doranexius.hypixelmod.modules.render.esp.MobESP;
 
 public class ClientProxy extends CommonProxy {
 	

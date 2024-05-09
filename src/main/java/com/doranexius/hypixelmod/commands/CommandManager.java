@@ -6,19 +6,15 @@ import java.util.List;
 import java.util.Map;
 
 import com.doranexius.hypixelmod.events.ModClientEventHandler;
+import com.doranexius.hypixelmod.gui.MainGUI;
 import com.doranexius.hypixelmod.modules.ModuleManager;
 import com.doranexius.hypixelmod.modules.render.Fullbright;
 
-import ibxm.Player;
-import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.IChatComponent;
 
 public class CommandManager implements ICommand {
 	
@@ -80,13 +76,14 @@ public class CommandManager implements ICommand {
 					ModuleManager.getModList().get(2).toggle();
 					PrintUtils.print(String.format("§6[Hypixel Mod]§6§3 Set Tracers to: %s", ModuleManager.getModList().get(2).isToggled()));
 				} else if (args[0].equals("fullbright")) {
-					Fullbright.toggleFullbright();
+					//Fullbright.toggleFullbright();
 					PrintUtils.print(String.format("§6[Hypixel Mod]§6§3 Set Fullbright to: %s", Fullbright.isFBToggled()));
 				} else {
 					PrintUtils.print("§6[Hypixel Mod]§6§c Invalid argument(s) for command! Type /hypixelmod commandlist for help!");
 				}
 				
 			} else {
+				ModClientEventHandler.guiToDisplay = new MainGUI();
 				PrintUtils.print("§6[Hypixel Mod]§6§3 This is a main command of Hypixel Mod! Current implemented modules: MobESP, ChestESP, Tracers.");
 			}
 		}
