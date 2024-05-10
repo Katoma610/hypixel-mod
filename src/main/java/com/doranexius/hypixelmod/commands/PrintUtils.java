@@ -2,6 +2,7 @@ package com.doranexius.hypixelmod.commands;
 
 import com.doranexius.hypixelmod.modules.Module;
 import com.doranexius.hypixelmod.modules.ModuleManager;
+import com.doranexius.hypixelmod.modules.render.waypoint.WaypointManager;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ChatComponentText;
@@ -25,7 +26,18 @@ public class PrintUtils {
 		print("§6[Hypixel Mod]§6§3 Here are all the arguments for the main /hypixelmod command: ");
 		
 		for (String arg : CommandManager.getCommandList().keySet()) {
-			print(String.format(" - /hypixelmod §3%s - %s", arg, CommandManager.getCommandList().get(arg)));
+			print(String.format(" - §3/hypixelmod %s - %s", arg, CommandManager.getCommandList().get(arg)));
 		}
+	}
+	
+	public static void printWaypoints() {
+		
+		String waypoint = "";
+		
+		for (String command : WaypointManager.getWaypointList().keySet()) {
+			waypoint += command + ", ";
+		}
+		
+		print("§6[Hypixel Mod]§6§3 Here are all the active waypoint: " + waypoint);
 	}
 }

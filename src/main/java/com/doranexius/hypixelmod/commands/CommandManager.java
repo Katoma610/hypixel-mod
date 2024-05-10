@@ -9,7 +9,9 @@ import com.doranexius.hypixelmod.events.ModClientEventHandler;
 import com.doranexius.hypixelmod.gui.MainGUI;
 import com.doranexius.hypixelmod.modules.ModuleManager;
 import com.doranexius.hypixelmod.modules.render.Fullbright;
+import com.doranexius.hypixelmod.modules.render.waypoint.WaypointManager;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
@@ -52,39 +54,41 @@ public class CommandManager implements ICommand {
 	@Override
 	public void processCommand(ICommandSender sender, String[] args) throws CommandException {
 		
-		commandList.put("mobesp", "Toggles MobESP.");
-		commandList.put("modulelist", "Prints the list of all modules.");
 		commandList.put("commandlist", "Prints this list.");
-		commandList.put("chestesp", "Toggles ChestESP.");
-		commandList.put("tracers", "Toggles Tracers.");
-		commandList.put("fullbright", "Toggles Fullbright.");
+		commandList.put("addwaypoint {name}", "Adds a waypoint with that name at player's coordinates.");
+		commandList.put("addwaypoint {name} {x} {y} {z}", "Adds a waypoint with that name at x, y, z coordinates.");
+		commandList.put("delwaypoint {name}", "Removes a waypoint with that name.");
 		
 		if (sender instanceof EntityPlayer) {
 			if (args.length > 0) {
 				
-				if (args[0].equals("mobesp")) {
-					ModuleManager.getModList().get(0).toggle();
-					PrintUtils.print(String.format("§6[Hypixel Mod]§6§3 Set MobESP to: %s", ModuleManager.getModList().get(0).isToggled()));
-				} else if (args[0].equals("modulelist")) {
-					PrintUtils.printModules();
+				if (args[0].equals("addwaypoint") && args.length > 1) {
+					if (args.length == 5) {
+						WaypointManager.addWaypoint(args[1], Integer.parseInt(args[2]), Integer.parseInt(args[3]), Integer.parseInt(args[4]));
+						PrintUtils.print(String.format("§6[Hypixel Mod]§6§3 Added waypoint %s at x: %d y: %d z: %d.", args[1] , Integer.parseInt(args[2]), Integer.parseInt(args[3]), Integer.parseInt(args[4])));
+					} else if (args.length == 2) {
+						EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+						WaypointManager.addWaypoint(args[1], (int) player.posX, (int) player.posY, (int) player.posZ);
+						PrintUtils.print("§6[Hypixel Mod]§6§3 Added a waypoint" + args[1] + "at player's coordinates.");
+					}
+				} else if (args[0].equals("delwaypoint") && args.length > 1) {
+					if (WaypointManager.getWaypointList().containsKey(args[1])) {
+						WaypointManager.deleteWaypoint(args[1]);
+						PrintUtils.print("§6[Hypixel Mod]§6§3 Deleted waypoint " + args[1]);
+					}
 				} else if (args[0].equals("commandlist")) {
 					PrintUtils.printCommands();
-				} else if (args[0].equals("chestesp")) {
-					ModuleManager.getModList().get(1).toggle();
-					PrintUtils.print(String.format("§6[Hypixel Mod]§6§3 Set ChestESP to: %s", ModuleManager.getModList().get(1).isToggled()));
-				} else if (args[0].equals("tracers")) {
-					ModuleManager.getModList().get(2).toggle();
-					PrintUtils.print(String.format("§6[Hypixel Mod]§6§3 Set Tracers to: %s", ModuleManager.getModList().get(2).isToggled()));
-				} else if (args[0].equals("fullbright")) {
-					//Fullbright.toggleFullbright();
-					//PrintUtils.print(String.format("§6[Hypixel Mod]§6§3 Set Fullbright to: %s", Fullbright.isFBToggled()));
-				} else {
+				} else if (args[0].equals("waypoints")) {
+					PrintUtils.printWaypoints();
+				}
+				
+				else {
 					PrintUtils.print("§6[Hypixel Mod]§6§c Invalid argument(s) for command! Type /hypixelmod commandlist for help!");
 				}
 				
 			} else {
 				ModClientEventHandler.guiToDisplay = new MainGUI();
-				PrintUtils.print("§6[Hypixel Mod]§6§3 This is a main command of Hypixel Mod! Current implemented modules: MobESP, ChestESP, Tracers.");
+				PrintUtils.print("§6[Hypixel Mod]§6§3 This is a main command of Hypixel Mod!");
 			}
 		}
 	}

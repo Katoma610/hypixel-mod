@@ -22,6 +22,8 @@ import com.doranexius.hypixelmod.modules.render.Tracers;
 import com.doranexius.hypixelmod.modules.render.esp.ChestESP;
 import com.doranexius.hypixelmod.modules.render.esp.MobESP;
 import com.doranexius.hypixelmod.modules.render.esp.PlayerESP;
+import com.doranexius.hypixelmod.modules.render.waypoint.RenderWaypoints;
+import com.doranexius.hypixelmod.modules.render.waypoint.WaypointManager;
 import com.doranexius.hypixelmod.renderUtils.RenderGUI;
 
 public class ModClientEventHandler {
@@ -67,6 +69,10 @@ public class ModClientEventHandler {
 		}
 		if (ModuleManager.getRenderModList().get(3).isToggled()) {
 			Tracers.drawTracers();
+		}
+		
+		if (!WaypointManager.getWaypointList().isEmpty()) {
+			RenderWaypoints.renderWaypoints();
 		}
 		
 		

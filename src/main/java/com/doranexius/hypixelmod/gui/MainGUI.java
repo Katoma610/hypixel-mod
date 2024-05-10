@@ -2,7 +2,6 @@ package com.doranexius.hypixelmod.gui;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.lwjgl.opengl.GL11;
@@ -23,6 +22,8 @@ public class MainGUI extends GuiScreen {
 	private CategoryButton lastCategoryButton = null;
 	
 	private List<ToggleButton> renderGuiButtons = new ArrayList<ToggleButton>();
+	
+	private int toggleButtonStartIndex;
 	
 	@Override
 	public void initGui() {
@@ -45,9 +46,11 @@ public class MainGUI extends GuiScreen {
 			id += 1;
 		}
 		
+		toggleButtonStartIndex = id;
+		
 		for (Module module : ModuleManager.getRenderModList()) {
-			ToggleButton button = new ToggleButton(id, x, y, false); // ToggleButton indices start with 3
-			if (ModuleManager.getRenderModList().get(id - 3).isToggled()) {
+			ToggleButton button = new ToggleButton(id, x, y, false);
+			if (ModuleManager.getRenderModList().get(id - toggleButtonStartIndex).isToggled()) {
 				button.toggle();
 			} 
 			
@@ -91,7 +94,7 @@ public class MainGUI extends GuiScreen {
 			toggleButton.toggle();
 			
 			if (currCategory.equals("RENDER")) {
-				ModuleManager.getRenderModList().get(toggleButton.getButtonId() - 3).toggle(); // ToggleButton indices start with 3
+				ModuleManager.getRenderModList().get(toggleButton.getButtonId() - toggleButtonStartIndex).toggle();
 			}
 			
 		} else if (button instanceof CategoryButton) {
