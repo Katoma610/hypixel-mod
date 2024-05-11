@@ -9,7 +9,7 @@ import com.doranexius.hypixelmod.events.ModClientEventHandler;
 import com.doranexius.hypixelmod.gui.MainGUI;
 import com.doranexius.hypixelmod.modules.ModuleManager;
 import com.doranexius.hypixelmod.modules.render.Fullbright;
-import com.doranexius.hypixelmod.modules.render.waypoint.WaypointManager;
+import com.doranexius.hypixelmod.modules.render.waypoints.WaypointManager;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.command.CommandException;

@@ -1,6 +1,6 @@
 package com.doranexius.hypixelmod.commands;
 
-import com.doranexius.hypixelmod.modules.render.waypoint.WaypointManager;
+import com.doranexius.hypixelmod.modules.render.waypoints.WaypointManager;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ChatComponentText;

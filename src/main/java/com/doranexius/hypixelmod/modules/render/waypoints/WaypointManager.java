@@ -1,4 +1,4 @@
-package com.doranexius.hypixelmod.modules.render.waypoint;
+package com.doranexius.hypixelmod.modules.render.waypoints;
 
 import java.util.HashMap;
 import java.util.Map;

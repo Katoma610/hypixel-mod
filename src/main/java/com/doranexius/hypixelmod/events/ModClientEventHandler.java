@@ -22,8 +22,8 @@ import com.doranexius.hypixelmod.modules.render.Tracers;
 import com.doranexius.hypixelmod.modules.render.esp.ChestESP;
 import com.doranexius.hypixelmod.modules.render.esp.MobESP;
 import com.doranexius.hypixelmod.modules.render.esp.PlayerESP;
-import com.doranexius.hypixelmod.modules.render.waypoint.RenderWaypoints;
-import com.doranexius.hypixelmod.modules.render.waypoint.WaypointManager;
+import com.doranexius.hypixelmod.modules.render.waypoints.RenderWaypoints;
+import com.doranexius.hypixelmod.modules.render.waypoints.WaypointManager;
 import com.doranexius.hypixelmod.renderUtils.RenderGUI;
 
 public class ModClientEventHandler {
@@ -54,9 +54,9 @@ public class ModClientEventHandler {
 		GL11.glPushMatrix();
 		GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
 		GL11.glDisable(GL11.GL_LIGHTING);
-		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		GL11.glDisable(GL11.GL_CULL_FACE);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		
 		if (ModuleManager.getRenderModList().get(0).isToggled()) {
 			MobESP.drawMobESP();
@@ -71,17 +71,17 @@ public class ModClientEventHandler {
 			Tracers.drawTracers();
 		}
 		
-		if (!WaypointManager.getWaypointList().isEmpty()) {
-			RenderWaypoints.renderWaypoints();
-		}
-		
-		
-		GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
 		GL11.glEnable(GL11.GL_CULL_FACE);
 		GL11.glPopAttrib();
 		GL11.glPopMatrix();
+		
+		if (!WaypointManager.getWaypointList().isEmpty()) {
+			RenderWaypoints.renderWaypoints();
+		}
+		
 	}
 	
 	@SubscribeEvent
