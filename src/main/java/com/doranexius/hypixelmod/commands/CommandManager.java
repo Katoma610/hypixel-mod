@@ -69,7 +69,7 @@ public class CommandManager implements ICommand {
 					} else if (args.length == 2) {
 						EntityPlayer player = Minecraft.getMinecraft().thePlayer;
 						WaypointManager.addWaypoint(args[1], (int) player.posX, (int) player.posY, (int) player.posZ);
-						PrintUtils.print("§6[Hypixel Mod]§6§3 Added a waypoint" + args[1] + "at player's coordinates.");
+						PrintUtils.print("§6[Hypixel Mod]§6§3 Added a waypoint " + args[1] + " at player's coordinates.");
 					}
 				} else if (args[0].equals("delwaypoint") && args.length > 1) {
 					if (WaypointManager.getWaypointList().containsKey(args[1])) {
