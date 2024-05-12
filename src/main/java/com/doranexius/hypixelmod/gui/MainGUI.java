@@ -13,6 +13,7 @@ import com.doranexius.hypixelmod.modules.ModuleManager;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.GlStateManager;
 
 import com.doranexius.hypixelmod.modules.Module;
 
@@ -31,9 +32,8 @@ public class MainGUI extends GuiScreen {
 		super.initGui();
 		
 		GL11.glPushMatrix();
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glDisable(GL11.GL_LIGHTING);
-		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GlStateManager.disableLighting();
+		GlStateManager.disableTexture2D();
 		
 		int x = width / 2 + 120;
 		int y = height / 2 - 160;
@@ -60,9 +60,8 @@ public class MainGUI extends GuiScreen {
 		}
 		
 		
-		GL11.glDisable(GL11.GL_BLEND);
-		GL11.glEnable(GL11.GL_LIGHTING);
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GlStateManager.enableLighting();
+		GlStateManager.enableTexture2D();
 		GL11.glPopMatrix();
 	}
 	

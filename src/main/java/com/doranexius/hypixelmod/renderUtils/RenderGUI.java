@@ -17,6 +17,6 @@ public class RenderGUI extends GuiIngame {
 		//drawRect(2, 2, 95, 14, 0x080707);
 		fontRenderer.drawString(name, 4, 4, 0x18d41b);
 		fontRenderer.drawString("FPS: " + Minecraft.getDebugFPS(), 70, 4, 0x18d41b);
-		;
+		
 	}
 }

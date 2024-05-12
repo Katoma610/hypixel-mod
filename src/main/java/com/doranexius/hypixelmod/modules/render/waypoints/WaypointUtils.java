@@ -5,6 +5,7 @@ import org.lwjgl.opengl.GL11;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.BlockPos;
 
 public class WaypointUtils {
@@ -37,7 +38,7 @@ public class WaypointUtils {
         Gui gui = new Gui();
         gui.drawCenteredString(fRenderer, name, 0, 0, 0xFFFF0000);
 		
-		GL11.glEnable(GL11.GL_LIGHTING);
+        GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
 		GL11.glEnable(GL11.GL_CULL_FACE);
 		GL11.glPopAttrib();

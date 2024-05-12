@@ -2,6 +2,7 @@ package com.doranexius.hypixelmod.events;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.event.ClickEvent;
 import net.minecraft.event.ClickEvent.Action;
@@ -17,6 +18,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import org.lwjgl.opengl.GL11;
 
 import com.doranexius.hypixelmod.*;
+import com.doranexius.hypixelmod.cosmetics.HatCosmetic;
 import com.doranexius.hypixelmod.modules.ModuleManager;
 import com.doranexius.hypixelmod.modules.render.Tracers;
 import com.doranexius.hypixelmod.modules.render.esp.ChestESP;
@@ -57,6 +59,10 @@ public class ModClientEventHandler {
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		GL11.glDisable(GL11.GL_CULL_FACE);
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GL11.glDisable(GL11.GL_TEXTURE);
+		
+//		GL11.glEnable(GL11.GL_COLOR_MATERIAL);
+//		GL11.glColorMaterial(GL11.GL_FRONT_AND_BACK, GL11.GL_AMBIENT_AND_DIFFUSE);
 		
 		if (ModuleManager.getRenderModList().get(0).isToggled()) {
 			MobESP.drawMobESP();
@@ -71,12 +77,18 @@ public class ModClientEventHandler {
 			Tracers.drawTracers();
 		}
 		
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
+		if (Minecraft.getMinecraft().gameSettings.thirdPersonView != 0) {
+			HatCosmetic.drawHat();
+		}
+		
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		//GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glEnable(GL11.GL_CULL_FACE);
+		GL11.glEnable(GL11.GL_TEXTURE);
 		GL11.glPopAttrib();
 		GL11.glPopMatrix();
+		
 		
 		if (!WaypointManager.getWaypointList().isEmpty()) {
 			RenderWaypoints.renderWaypoints();
@@ -85,12 +97,11 @@ public class ModClientEventHandler {
 	}
 	
 	@SubscribeEvent
-	public void onGUIRender(RenderGameOverlayEvent event) {
+	public void onGUIRender(RenderGameOverlayEvent.Post event) {
+		if (event.type != RenderGameOverlayEvent.ElementType.ALL) {
+			return;
+		}
 		RenderGUI.printClientName(HypixelMod.MODID);
-	}
-	
-	@SubscribeEvent
-	public void onTick(ClientTickEvent event) {
 		if (guiToDisplay != null) {
 			Minecraft.getMinecraft().displayGuiScreen(guiToDisplay);
 			guiToDisplay = null;
