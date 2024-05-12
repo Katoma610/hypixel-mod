@@ -9,10 +9,12 @@ import net.minecraft.client.renderer.entity.RenderManager;
 
 public class HatCosmetic {
 	
-	private static double rainbowSpeedInc = 0.01;
-	private static double r = 0.5;
-	private static double g = 0.5;
-	private static double b = 0.5;
+	private static double redSpeedInc = 1;
+	private static double greenSpeedInc = 1;
+	private static double blueSpeedInc = 1;
+	private static double r = 121;
+	private static double g = 20;
+	private static double b = 12;
 	
 	public static void drawHat() {
 		RenderManager renderManager = Minecraft.getMinecraft().getRenderManager();
@@ -22,18 +24,22 @@ public class HatCosmetic {
 		double playerZ = renderManager.viewerPosZ;
 		
 		GL11.glTranslated(0, 1.9, 0);
-		RainbowHatRenderer.drawCircle(0.6, 231, 121, 231);
+		RainbowHatRenderer.drawCircle(0.6, r, g, b);
 		GL11.glTranslated(0, -1.9, 0);
 		
-//		r += rainbowSpeedInc;
-//		g += rainbowSpeedInc;
-//		b += rainbowSpeedInc;
-//		
-//		System.out.println(String.format("%f %f %f", r,g,b));
-//		
-//		if (r > 1 || g > 1 || b > 1 || r < 0.1 || g < 0.1 || b < 0.1) {
-//			rainbowSpeedInc = -rainbowSpeedInc;
-//		}
+		r += redSpeedInc;
+		g += greenSpeedInc;
+		b += blueSpeedInc;
+		
+		System.out.println(String.format("%f %f %f", r,g,b));
+		
+		if (r > 200 || r < 10) {
+			redSpeedInc = -redSpeedInc;
+		} else if (g > 200 || g < 10) {
+			greenSpeedInc = -greenSpeedInc;
+		} else if (b > 200 || b < 10) {
+			blueSpeedInc = -blueSpeedInc;
+		}
 	}
 	
 }
