@@ -4,7 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 public class RainbowHatRenderer {
 	
-	public static void drawCircle(double radius, double r, double g, double b) {
+	public static void drawHat(double radius, double r, double g, double b) {
 		
 		
 		
@@ -14,10 +14,12 @@ public class RainbowHatRenderer {
 //        }
 //		GL11.glEnd();
 		
+		
+		
 		GL11.glBegin(GL11.GL_LINE_STRIP);
         for (int i = 0; i <= 360; i += 1) {
-        	GL11.glColor4d(r / 255.0, g / 255.0, b / 255.0, 1.0);
-    		GL11.glLineWidth(10.0f);
+        	GL11.glColor4d(r / 255.0, g / 255.0, b / 255.0, 0.7f);
+    		GL11.glLineWidth(1.0f);
             double x1 = Math.sin(Math.toRadians(i)) * radius;
             double z1 = Math.cos(Math.toRadians(i)) * radius;
             double x2 = Math.sin(Math.toRadians(i + 1)) * radius;

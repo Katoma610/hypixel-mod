@@ -17,21 +17,17 @@ public class HatCosmetic {
 	private static double b = 12;
 	
 	public static void drawHat() {
-		RenderManager renderManager = Minecraft.getMinecraft().getRenderManager();
-		
-		double playerX = renderManager.viewerPosX;
-		double playerY = renderManager.viewerPosY;
-		double playerZ = renderManager.viewerPosZ;
+		GL11.glDisable(GL11.GL_DEPTH_TEST);
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		
 		GL11.glTranslated(0, 1.9, 0);
-		RainbowHatRenderer.drawCircle(0.6, r, g, b);
+		RainbowHatRenderer.drawHat(0.6, r, g, b);
 		GL11.glTranslated(0, -1.9, 0);
 		
 		r += redSpeedInc;
 		g += greenSpeedInc;
 		b += blueSpeedInc;
-		
-		System.out.println(String.format("%f %f %f", r,g,b));
 		
 		if (r > 200 || r < 10) {
 			redSpeedInc = -redSpeedInc;
@@ -40,6 +36,9 @@ public class HatCosmetic {
 		} else if (b > 200 || b < 10) {
 			blueSpeedInc = -blueSpeedInc;
 		}
+		
+		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glEnable(GL11.GL_DEPTH_TEST);
 	}
 	
 }
