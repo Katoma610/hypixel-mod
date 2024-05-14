@@ -6,10 +6,8 @@ import com.doranexius.hypixelmod.modules.Category;
 import com.doranexius.hypixelmod.modules.Module;
 import com.doranexius.hypixelmod.renderUtils.RenderBoundingBox;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 
@@ -36,6 +34,11 @@ public class ChestESP extends Module {
 			}
 		}
 		GL11.glTranslated(lastX+renderManager.viewerPosX, lastY+renderManager.viewerPosY, lastZ+renderManager.viewerPosZ);
+	}
+	
+	@Override
+	public void onEnable() {
+		drawBlockOutline();
 	}
 	
 }

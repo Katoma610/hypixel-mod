@@ -36,5 +36,10 @@ public class PlayerESP extends Module {
 	    
 	    GL11.glTranslated(lastX+renderManager.viewerPosX, lastY+renderManager.viewerPosY, lastZ+renderManager.viewerPosZ);
 	}
+	
+	@Override
+	public void onEnable() {
+		drawPlayerESP();
+	}
 
 }

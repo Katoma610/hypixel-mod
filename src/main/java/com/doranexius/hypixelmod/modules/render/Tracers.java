@@ -39,4 +39,9 @@ public class Tracers extends Module {
 		}
 	}
 	
+	@Override
+	public void onEnable() {
+		drawTracers();
+	}
+	
 }

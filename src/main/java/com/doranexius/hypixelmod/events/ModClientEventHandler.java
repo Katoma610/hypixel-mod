@@ -19,6 +19,7 @@ import org.lwjgl.opengl.GL11;
 
 import com.doranexius.hypixelmod.*;
 import com.doranexius.hypixelmod.cosmetics.HatCosmetic;
+import com.doranexius.hypixelmod.modules.Module;
 import com.doranexius.hypixelmod.modules.ModuleManager;
 import com.doranexius.hypixelmod.modules.render.Tracers;
 import com.doranexius.hypixelmod.modules.render.esp.ChestESP;
@@ -61,29 +62,19 @@ public class ModClientEventHandler {
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		GL11.glDisable(GL11.GL_TEXTURE);
 		
-//		GL11.glEnable(GL11.GL_COLOR_MATERIAL);
-//		GL11.glColorMaterial(GL11.GL_FRONT_AND_BACK, GL11.GL_AMBIENT_AND_DIFFUSE);
-		
-		if (ModuleManager.getRenderModList().get(0).isToggled()) {
-			MobESP.drawMobESP();
-		}
-		if (ModuleManager.getRenderModList().get(1).isToggled()) {
-			ChestESP.drawBlockOutline();
-		}
-		if (ModuleManager.getRenderModList().get(2).isToggled()) {
-			PlayerESP.drawPlayerESP();
-		}
-		if (ModuleManager.getRenderModList().get(3).isToggled()) {
-			Tracers.drawTracers();
+		for (Module module : ModuleManager.getRenderModList()) {
+			if (module.isToggled()) {
+				module.onEnable();
+			}
 		}
 		
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
+		
 		if (Minecraft.getMinecraft().gameSettings.thirdPersonView != 0) {
 			HatCosmetic.drawHat();
 		}
 		
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		//GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glEnable(GL11.GL_CULL_FACE);
 		GL11.glEnable(GL11.GL_TEXTURE);
 		GL11.glPopAttrib();

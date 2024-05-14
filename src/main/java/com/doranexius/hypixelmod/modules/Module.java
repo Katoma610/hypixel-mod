@@ -23,10 +23,6 @@ public class Module {
 	public void onDisable() {}
 	public void onRender() {}
 	public void onUpdate() {}
-
-	public Minecraft getMc() {
-		return mc;
-	}
 	
 	public String getName() {
 		return name;

@@ -19,11 +19,12 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
-@Mod(modid = HypixelMod.MODID, version = HypixelMod.VERSION, clientSideOnly = true)
+@Mod(name = HypixelMod.NAME ,modid = HypixelMod.MODID, version = HypixelMod.VERSION, clientSideOnly = true)
 public class HypixelMod
 {
     public static final String MODID = "hypixelmod";
     public static final String VERSION = "1.0";
+    public static final String NAME = "Hypixel Mod";
     public static HypixelMod instance = new HypixelMod();
     public static ModuleManager moduleManager;
     

@@ -5,11 +5,9 @@ import org.lwjgl.opengl.GL11;
 import com.doranexius.hypixelmod.renderUtils.RenderBoundingBox;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntitySkeleton;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -41,5 +39,10 @@ public class MobESP extends Module {
 	    }
 	    
 	    GL11.glTranslated(lastX+renderManager.viewerPosX, lastY+renderManager.viewerPosY, lastZ+renderManager.viewerPosZ);
+	}
+	
+	@Override
+	public void onEnable() {
+		drawMobESP();
 	}
 }
