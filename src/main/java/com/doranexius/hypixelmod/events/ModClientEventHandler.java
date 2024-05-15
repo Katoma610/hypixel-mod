@@ -2,11 +2,13 @@ package com.doranexius.hypixelmod.events;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.event.ClickEvent;
 import net.minecraft.event.ClickEvent.Action;
 import net.minecraft.event.HoverEvent;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatStyle;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -15,7 +17,12 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
+
+import java.nio.FloatBuffer;
+
+import org.apache.commons.lang3.tuple.Triple;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.util.vector.Matrix4f;
 
 import com.doranexius.hypixelmod.*;
 import com.doranexius.hypixelmod.cosmetics.HatCosmetic;
@@ -27,7 +34,9 @@ import com.doranexius.hypixelmod.modules.render.esp.MobESP;
 import com.doranexius.hypixelmod.modules.render.esp.PlayerESP;
 import com.doranexius.hypixelmod.modules.render.waypoints.RenderWaypoints;
 import com.doranexius.hypixelmod.modules.render.waypoints.WaypointManager;
+import com.doranexius.hypixelmod.modules.render.waypoints.WaypointUtils;
 import com.doranexius.hypixelmod.renderUtils.RenderGUI;
+import com.doranexius.hypixelmod.renderUtils.WorldToScreen;
 
 public class ModClientEventHandler {
 	
@@ -82,7 +91,7 @@ public class ModClientEventHandler {
 		
 		
 		if (!WaypointManager.getWaypointList().isEmpty()) {
-			RenderWaypoints.renderWaypoints();
+			RenderWaypoints.renderWaypoints(event.partialTicks);
 		}
 		
 	}
@@ -92,10 +101,17 @@ public class ModClientEventHandler {
 		if (event.type != RenderGameOverlayEvent.ElementType.ALL) {
 			return;
 		}
-		RenderGUI.printClientName(HypixelMod.MODID);
+		RenderGUI.printClientName(HypixelMod.NAME);
 		if (guiToDisplay != null) {
 			Minecraft.getMinecraft().displayGuiScreen(guiToDisplay);
 			guiToDisplay = null;
 		}
+		
+//		for (String name : WaypointManager.getWaypointList().keySet()) {
+//			Triple<Integer, Integer, Integer> waypoint = WaypointManager.getWaypointList().get(name);
+//			WaypointUtils.drawNametag(name, new BlockPos(waypoint.getLeft(), waypoint.getMiddle(), waypoint.getRight()));
+//		}
 	}
+	
+	
 }

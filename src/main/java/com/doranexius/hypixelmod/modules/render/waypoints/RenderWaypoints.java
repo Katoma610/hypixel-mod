@@ -13,7 +13,7 @@ import net.minecraft.util.BlockPos;
 
 public class RenderWaypoints {
 	
-	public static void renderWaypoints() {
+	public static void renderWaypoints(float partialTicks) {
 		RenderManager renderManager = Minecraft.getMinecraft().getRenderManager();
 		
 		double playerX = renderManager.viewerPosX;
@@ -43,11 +43,11 @@ public class RenderWaypoints {
 			
 			GL11.glEnable(GL11.GL_TEXTURE_2D);
 			
-			GL11.glTranslated(0, 1.5, 0);
+			//GL11.glTranslated(0, 1.5, 0);
+			GL11.glTranslated(playerX - waypoint.getLeft(), playerY - waypoint.getMiddle(), playerZ - waypoint.getRight());
+			WaypointUtils.renderWaypointText(name, new BlockPos(waypoint.getLeft(), waypoint.getMiddle(), waypoint.getRight()), partialTicks);
 			
-			WaypointUtils.drawNametag(name, new BlockPos(waypoint.getLeft(), waypoint.getMiddle(), waypoint.getRight()));
 			
-			GL11.glTranslated(playerX - waypoint.getLeft(), playerY - waypoint.getMiddle()-1.5, playerZ - waypoint.getRight());
 		}
 	}
 	
