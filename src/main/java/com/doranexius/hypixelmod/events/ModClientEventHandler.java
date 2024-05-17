@@ -35,7 +35,7 @@ import com.doranexius.hypixelmod.modules.render.esp.PlayerESP;
 import com.doranexius.hypixelmod.modules.render.waypoints.RenderWaypoints;
 import com.doranexius.hypixelmod.modules.render.waypoints.WaypointManager;
 import com.doranexius.hypixelmod.modules.render.waypoints.WaypointUtils;
-import com.doranexius.hypixelmod.renderUtils.RenderGUI;
+import com.doranexius.hypixelmod.overlays.InfoOverlay;
 import com.doranexius.hypixelmod.renderUtils.WorldToScreen;
 
 public class ModClientEventHandler {
@@ -64,12 +64,11 @@ public class ModClientEventHandler {
 	public void onLastEvent(RenderWorldLastEvent event) {
 		
 		GL11.glPushMatrix();
-		GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
 		GL11.glDisable(GL11.GL_LIGHTING);
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		GL11.glDisable(GL11.GL_CULL_FACE);
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
-		GL11.glDisable(GL11.GL_TEXTURE);
+		//GL11.glDisable(GL11.GL_TEXTURE);
 		
 		for (Module module : ModuleManager.getRenderModList()) {
 			if (module.isToggled()) {
@@ -85,8 +84,7 @@ public class ModClientEventHandler {
 		
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glEnable(GL11.GL_CULL_FACE);
-		GL11.glEnable(GL11.GL_TEXTURE);
-		GL11.glPopAttrib();
+		//GL11.glEnable(GL11.GL_TEXTURE);
 		GL11.glPopMatrix();
 		
 		
@@ -101,16 +99,11 @@ public class ModClientEventHandler {
 		if (event.type != RenderGameOverlayEvent.ElementType.ALL) {
 			return;
 		}
-		RenderGUI.printClientName(HypixelMod.NAME);
+		InfoOverlay.printInfo(HypixelMod.NAME);
 		if (guiToDisplay != null) {
 			Minecraft.getMinecraft().displayGuiScreen(guiToDisplay);
 			guiToDisplay = null;
 		}
-		
-//		for (String name : WaypointManager.getWaypointList().keySet()) {
-//			Triple<Integer, Integer, Integer> waypoint = WaypointManager.getWaypointList().get(name);
-//			WaypointUtils.drawNametag(name, new BlockPos(waypoint.getLeft(), waypoint.getMiddle(), waypoint.getRight()));
-//		}
 	}
 	
 	

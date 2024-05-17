@@ -1,10 +1,9 @@
 package com.doranexius.hypixelmod.modules;
 
-import net.minecraft.client.Minecraft;
+import com.doranexius.hypixelmod.overlays.InfoOverlay;
 
 public class Module {
 	
-	protected Minecraft mc = Minecraft.getMinecraft();
 	private String name;
 	private boolean toggled;
 	private Category category;
@@ -17,6 +16,11 @@ public class Module {
 	
 	public void toggle() {
 		toggled = !toggled;
+		if (toggled) {
+			InfoOverlay.moduleNamesList.add(this.name);
+		} else {
+			InfoOverlay.moduleNamesList.remove(this.name);
+		}
 	}
 	
 	public void onEnable() {}

@@ -1,7 +1,11 @@
 package com.doranexius.hypixelmod;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.doranexius.hypixelmod.commands.CommandManager;
 import com.doranexius.hypixelmod.events.ModClientEventHandler;
+import com.doranexius.hypixelmod.modules.Module;
 import com.doranexius.hypixelmod.modules.ModuleManager;
 import com.doranexius.hypixelmod.modules.render.Fullbright;
 import com.doranexius.hypixelmod.modules.render.Tracers;
@@ -38,6 +42,9 @@ public class HypixelMod
     	ModuleManager.newRenderMod(new PlayerESP());
     	ModuleManager.newRenderMod(new Tracers());
     	ModuleManager.newRenderMod(new Fullbright());
+    	
+    	// Add all module lists to the main module list
+    	ModuleManager.mergeModList(ModuleManager.getRenderModList());
     	
     }
     

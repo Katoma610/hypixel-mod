@@ -2,6 +2,7 @@ package com.doranexius.hypixelmod.modules.render;
 
 import com.doranexius.hypixelmod.modules.Category;
 import com.doranexius.hypixelmod.modules.Module;
+import com.doranexius.hypixelmod.overlays.InfoOverlay;
 
 import net.minecraft.client.Minecraft;
 
@@ -23,6 +24,12 @@ public class Fullbright extends Module{
 		}
 		
 		isToggled = !isToggled;
+		
+		if (isToggled) {
+			InfoOverlay.moduleNamesList.add("Fullbright");
+		} else {
+			InfoOverlay.moduleNamesList.remove("Fullbright");
+		}
 	}
 	
 	@Override

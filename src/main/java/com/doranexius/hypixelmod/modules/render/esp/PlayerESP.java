@@ -14,7 +14,7 @@ import net.minecraft.entity.player.EntityPlayer;
 public class PlayerESP extends Module {
 
 	public PlayerESP() {
-		super("Player ESP", Category.RENDER);
+		super("PlayerESP", Category.RENDER);
 	}
 	
 	public static void drawPlayerESP() {

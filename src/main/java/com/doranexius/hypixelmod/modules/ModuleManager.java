@@ -37,6 +37,10 @@ public class ModuleManager {
 		return renderMods;
 	}
 	
+	public static void mergeModList(ArrayList<Module> modules) {
+		mods.addAll(modules);
+	}
+	
 	public static void onUpdate() {
 		for (Module module : mods) {
 			module.onUpdate();
