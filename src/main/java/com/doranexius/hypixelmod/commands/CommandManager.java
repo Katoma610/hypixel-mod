@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.doranexius.hypixelmod.HypixelMod;
 import com.doranexius.hypixelmod.events.ModClientEventHandler;
 import com.doranexius.hypixelmod.gui.MainGUI;
 import com.doranexius.hypixelmod.modules.render.waypoints.WaypointManager;
@@ -63,16 +64,16 @@ public class CommandManager implements ICommand {
 				if (args[0].equals("addwaypoint") && args.length > 1) {
 					if (args.length == 5) {
 						WaypointManager.addWaypoint(args[1], Integer.parseInt(args[2]), Integer.parseInt(args[3]), Integer.parseInt(args[4]));
-						PrintUtils.print(String.format("§6[Hypixel Mod]§6§3 Added waypoint %s at x: %d y: %d z: %d.", args[1] , Integer.parseInt(args[2]), Integer.parseInt(args[3]), Integer.parseInt(args[4])));
+						PrintUtils.print(String.format(HypixelMod.BASE_MESSAGE_START + "Added waypoint %s at x: %d y: %d z: %d.", args[1] , Integer.parseInt(args[2]), Integer.parseInt(args[3]), Integer.parseInt(args[4])));
 					} else if (args.length == 2) {
 						EntityPlayer player = Minecraft.getMinecraft().thePlayer;
 						WaypointManager.addWaypoint(args[1], (int) player.posX, (int) player.posY, (int) player.posZ);
-						PrintUtils.print("§6[Hypixel Mod]§6§3 Added a waypoint " + args[1] + " at player's coordinates.");
+						PrintUtils.print(HypixelMod.BASE_MESSAGE_START + "Added a waypoint " + args[1] + " at player's coordinates.");
 					}
 				} else if (args[0].equals("delwaypoint") && args.length > 1) {
 					if (WaypointManager.getWaypointList().containsKey(args[1])) {
 						WaypointManager.deleteWaypoint(args[1]);
-						PrintUtils.print("§6[Hypixel Mod]§6§3 Deleted waypoint " + args[1]);
+						PrintUtils.print(HypixelMod.BASE_MESSAGE_START + "Deleted waypoint " + args[1]);
 					}
 				} else if (args[0].equals("commandlist")) {
 					PrintUtils.printCommands();
@@ -81,12 +82,12 @@ public class CommandManager implements ICommand {
 				}
 				
 				else {
-					PrintUtils.print("§6[Hypixel Mod]§6§c Invalid argument(s) for command! Type /hypixelmod commandlist for help!");
+					PrintUtils.print(HypixelMod.BASE_MESSAGE_START + "Invalid argument(s) for command! Type /hypixelmod commandlist for help!");
 				}
 				
 			} else {
 				ModClientEventHandler.guiToDisplay = new MainGUI();
-				PrintUtils.print("§6[Hypixel Mod]§6§3 This is a main command of Hypixel Mod!");
+				PrintUtils.print(HypixelMod.BASE_MESSAGE_START + "This is a main command of Hypixel Mod!");
 			}
 		}
 	}

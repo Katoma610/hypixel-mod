@@ -40,7 +40,6 @@ import com.doranexius.hypixelmod.renderUtils.WorldToScreen;
 
 public class ModClientEventHandler {
 	
-	private String baseMessageStart = "§6[Hypixel Mod]§6§c ";
 	private MobESP mobESP = new MobESP();
 	public static GuiScreen guiToDisplay = null;
 	
@@ -48,7 +47,7 @@ public class ModClientEventHandler {
 	public void onPlayerJoinWorld(EntityJoinWorldEvent event) {
 		if (event.entity instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) event.entity;
-			ChatComponentText comp = new ChatComponentText(String.format(baseMessageStart + "Hi, %s", player.getName()));
+			ChatComponentText comp = new ChatComponentText(String.format(HypixelMod.BASE_MESSAGE_START + "Hi, %s", player.getName()));
 			ChatStyle style = new ChatStyle().setChatClickEvent(new ClickEvent(Action.RUN_COMMAND, "/kill")).setChatHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ChatComponentText("Click this lol")));;
 			comp.setChatStyle(style);
 			player.addChatMessage(comp);

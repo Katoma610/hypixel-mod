@@ -10,6 +10,7 @@ import com.doranexius.hypixelmod.gui.buttons.CategoryButton;
 import com.doranexius.hypixelmod.gui.buttons.ToggleButton;
 import com.doranexius.hypixelmod.modules.Category;
 import com.doranexius.hypixelmod.modules.ModuleManager;
+import com.doranexius.hypixelmod.overlays.InfoOverlay;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -67,6 +68,7 @@ public class MainGUI extends GuiScreen {
 	
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+		drawRect(width / 2 - 201, height / 2 - 201, width / 2 + 201, height / 2 + 201, InfoOverlay.getCurrentGradientColor());
 		drawRect(width / 2 - 200, height / 2 - 200, width / 2 + 200, height / 2 + 200, 0xFF3B4341);
 		drawCenteredString(fontRendererObj, "Hypixel Mod v1.0", width / 2 - 150, height / 2 - 185, 0x18d41b);
 		drawRect(width / 2 - 100, height / 2 - 200, width / 2 - 105, height / 2 + 200, 0xFF000000);
@@ -132,8 +134,9 @@ public class MainGUI extends GuiScreen {
 	}
 	
 	private void drawMovementCategory(int x, int y, int width, int height) {
-		drawCenteredString(fontRendererObj, "This category is empty due to the lack of Movement modules.", x+width/2, y+height/2, 0xFF787878);
-		drawCenteredString(fontRendererObj, "They're coming in the future!", x+width/2, y+height/2+15, 0xFF787878);
+		drawCenteredString(fontRendererObj, "This category is empty due to", x+width/2, y+height/2, 0xFF787878);
+		drawCenteredString(fontRendererObj, "the lack of Movement modules.", x+width/2, y+height/2+15, 0xFF787878);
+		drawCenteredString(fontRendererObj, "They're coming in the future!", x+width/2, y+height/2+30, 0xFF787878);
 	}
 	
 	@Override
