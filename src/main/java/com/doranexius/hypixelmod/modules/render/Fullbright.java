@@ -17,17 +17,14 @@ public class Fullbright extends Module{
 	
 	@Override
 	public void toggle() {
-		if (Minecraft.getMinecraft().gameSettings.gammaSetting != 1000) {
-			Minecraft.getMinecraft().gameSettings.gammaSetting = 1000;
-		} else {
-			Minecraft.getMinecraft().gameSettings.gammaSetting = lastFullbightSetting;
-		}
-		
 		isToggled = !isToggled;
+		System.out.println(Minecraft.getMinecraft().gameSettings.gammaSetting);		
 		
 		if (isToggled) {
+			Minecraft.getMinecraft().gameSettings.gammaSetting = 1000;
 			InfoOverlay.moduleNamesList.add("Fullbright");
 		} else {
+			Minecraft.getMinecraft().gameSettings.gammaSetting = lastFullbightSetting;
 			InfoOverlay.moduleNamesList.remove("Fullbright");
 		}
 	}
@@ -37,8 +34,11 @@ public class Fullbright extends Module{
 		return isToggled;
 	}
 	
-//	public static boolean isFBToggled() {
-//		return isToggled;
-//	}
+	public static void checkFullbright() {
+		if (!isToggled && Minecraft.getMinecraft().gameSettings.gammaSetting > 1) {
+			Minecraft.getMinecraft().gameSettings.gammaSetting = 1;
+			lastFullbightSetting = 1;
+		}
+	}
 
 }

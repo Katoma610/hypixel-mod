@@ -68,7 +68,7 @@ public class MainGUI extends GuiScreen {
 	
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-		drawRect(width / 2 - 201, height / 2 - 201, width / 2 + 201, height / 2 + 201, InfoOverlay.getCurrentGradientColor());
+		drawRect(width / 2 - 202, height / 2 - 202, width / 2 + 202, height / 2 + 202, InfoOverlay.getCurrentGradientColor());
 		drawRect(width / 2 - 200, height / 2 - 200, width / 2 + 200, height / 2 + 200, 0xFF3B4341);
 		drawCenteredString(fontRendererObj, "Hypixel Mod v1.0", width / 2 - 150, height / 2 - 185, 0x18d41b);
 		drawRect(width / 2 - 100, height / 2 - 200, width / 2 - 105, height / 2 + 200, 0xFF000000);

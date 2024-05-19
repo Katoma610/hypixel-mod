@@ -28,6 +28,7 @@ import com.doranexius.hypixelmod.*;
 import com.doranexius.hypixelmod.cosmetics.HatCosmetic;
 import com.doranexius.hypixelmod.modules.Module;
 import com.doranexius.hypixelmod.modules.ModuleManager;
+import com.doranexius.hypixelmod.modules.render.Fullbright;
 import com.doranexius.hypixelmod.modules.render.Tracers;
 import com.doranexius.hypixelmod.modules.render.esp.ChestESP;
 import com.doranexius.hypixelmod.modules.render.esp.MobESP;
@@ -40,7 +41,6 @@ import com.doranexius.hypixelmod.renderUtils.WorldToScreen;
 
 public class ModClientEventHandler {
 	
-	private MobESP mobESP = new MobESP();
 	public static GuiScreen guiToDisplay = null;
 	
 	@SubscribeEvent
@@ -52,6 +52,7 @@ public class ModClientEventHandler {
 			comp.setChatStyle(style);
 			player.addChatMessage(comp);
 		}
+    	Fullbright.checkFullbright();
 	}
 	
 	@SubscribeEvent

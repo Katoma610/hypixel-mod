@@ -47,6 +47,8 @@ public class HypixelMod
     	// Add all module lists to the main module list
     	ModuleManager.mergeModList(ModuleManager.getRenderModList());
     	
+    	
+    	
     }
     
     @EventHandler
