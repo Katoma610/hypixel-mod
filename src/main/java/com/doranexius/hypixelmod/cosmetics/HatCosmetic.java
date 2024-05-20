@@ -16,14 +16,18 @@ public class HatCosmetic {
 	private static double g = 20;
 	private static double b = 12;
 	
+	private static double heightIncIfSneaking;
+	
 	public static void drawHat() {
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		
-		GL11.glTranslated(0, 1.9, 0);
+		heightIncIfSneaking = Minecraft.getMinecraft().thePlayer.isSneaking() ? 0.4 : 0;
+		
+		GL11.glTranslated(0, 1.9-heightIncIfSneaking, 0);
 		RainbowHatRenderer.drawHat(0.6, r, g, b);
-		GL11.glTranslated(0, -1.9, 0);
+		GL11.glTranslated(0, -1.9+heightIncIfSneaking, 0);
 		
 		r += redSpeedInc;
 		g += greenSpeedInc;
