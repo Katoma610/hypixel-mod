@@ -34,17 +34,17 @@ public class RenderWaypoints {
 		    GL11.glBegin(GL11.GL_LINE_STRIP);
 			
 			GL11.glVertex3d(0,0,0);
-			GL11.glVertex3d(waypoint.getLeft() - playerX, waypoint.getMiddle() - playerY, waypoint.getRight() - playerZ);
+			GL11.glVertex3d(waypoint.getLeft()-0.5 - playerX, waypoint.getMiddle() - playerY, waypoint.getRight()-0.5 - playerZ);
 			
 			GL11.glEnd();
 			
-			GL11.glTranslated(-playerX + waypoint.getLeft(), -playerY + waypoint.getMiddle(), -playerZ + waypoint.getRight());
+			GL11.glTranslated(-playerX + waypoint.getLeft()-0.5, -playerY + waypoint.getMiddle(), -playerZ + waypoint.getRight()-0.5);
 			RenderBoundingBox.renderBB(1, 1, 0, 255, 0);
 			
 			GL11.glEnable(GL11.GL_TEXTURE_2D);
 			
 			//GL11.glTranslated(0, 1.5, 0);
-			GL11.glTranslated(playerX - waypoint.getLeft(), playerY - waypoint.getMiddle(), playerZ - waypoint.getRight());
+			GL11.glTranslated(playerX - waypoint.getLeft()+0.5, playerY - waypoint.getMiddle(), playerZ - waypoint.getRight()+0.5);
 			WaypointUtils.renderWaypointText(name, new BlockPos(waypoint.getLeft(), waypoint.getMiddle(), waypoint.getRight()), partialTicks);
 			
 			

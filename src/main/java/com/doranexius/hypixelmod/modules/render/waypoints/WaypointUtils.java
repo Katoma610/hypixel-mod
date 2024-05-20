@@ -31,9 +31,9 @@ public class WaypointUtils {
         double viewerY = viewer.lastTickPosY + (viewer.posY - viewer.lastTickPosY) * partialTicks;
         double viewerZ = viewer.lastTickPosZ + (viewer.posZ - viewer.lastTickPosZ) * partialTicks;
 
-        double x = loc.getX() - viewerX;
+        double x = loc.getX() - viewerX - 0.5;
         double y = loc.getY() - viewerY - viewer.getEyeHeight() + 1.5;
-        double z = loc.getZ() - viewerZ;
+        double z = loc.getZ() - viewerZ - 0.5;
 
         double distSq = x*x + y*y + z*z;
         double dist = Math.sqrt(distSq);

@@ -76,22 +76,26 @@ public class ModClientEventHandler {
 			}
 		}
 		
-		GL11.glEnable(GL11.GL_DEPTH_TEST);
+		//GL11.glEnable(GL11.GL_DEPTH_TEST);
 		
 		if (Minecraft.getMinecraft().gameSettings.thirdPersonView != 0) {
 			HatCosmetic.drawHat();
 		}
 		
+		//GL11.glDisable(GL11.GL_DEPTH);
+		
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glEnable(GL11.GL_CULL_FACE);
 		//GL11.glEnable(GL11.GL_TEXTURE);
-		GL11.glPopMatrix();
+		
 		
 		
 		if (!WaypointManager.getWaypointList().isEmpty()) {
 			RenderWaypoints.renderWaypoints(event.partialTicks);
 		}
 		
+		GL11.glEnable(GL11.GL_DEPTH_TEST);
+		GL11.glPopMatrix();
 	}
 	
 	@SubscribeEvent
