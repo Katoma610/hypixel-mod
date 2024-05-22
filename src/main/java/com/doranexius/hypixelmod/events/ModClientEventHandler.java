@@ -16,6 +16,7 @@ import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 
 import java.nio.FloatBuffer;
@@ -36,6 +37,7 @@ import com.doranexius.hypixelmod.modules.render.esp.PlayerESP;
 import com.doranexius.hypixelmod.modules.render.waypoints.RenderWaypoints;
 import com.doranexius.hypixelmod.modules.render.waypoints.WaypointManager;
 import com.doranexius.hypixelmod.modules.render.waypoints.WaypointUtils;
+import com.doranexius.hypixelmod.overlays.ArmorHUDOverlay;
 import com.doranexius.hypixelmod.overlays.InfoOverlay;
 import com.doranexius.hypixelmod.renderUtils.WorldToScreen;
 
@@ -103,12 +105,35 @@ public class ModClientEventHandler {
 		if (event.type != RenderGameOverlayEvent.ElementType.ALL) {
 			return;
 		}
+		
 		InfoOverlay.printInfo(HypixelMod.NAME);
+		
+		
+		
 		if (guiToDisplay != null) {
 			Minecraft.getMinecraft().displayGuiScreen(guiToDisplay);
 			guiToDisplay = null;
 		}
 	}
 	
+	@SubscribeEvent
+	public void onTick(TickEvent.RenderTickEvent event) {
+		Minecraft mc = Minecraft.getMinecraft();
+		
+		if (event.phase.equals(TickEvent.Phase.START)) {
+		      return;
+		}
+
+		if (!(mc.currentScreen == null)) {
+		      return;
+		}
+
+		final EntityPlayer player = mc.thePlayer;
+		if (player == null || player.capabilities.isCreativeMode || player.isSpectator()) {
+		      return;
+		}
+		
+		ArmorHUDOverlay.renderArmorOverlay();
+	}
 	
 }
