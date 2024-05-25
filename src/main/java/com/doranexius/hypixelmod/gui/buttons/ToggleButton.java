@@ -1,5 +1,7 @@
 package com.doranexius.hypixelmod.gui.buttons;
 
+import com.doranexius.hypixelmod.modules.Category;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 
@@ -9,13 +11,15 @@ public class ToggleButton extends GuiButton {
 	private int buttonY;
 	private boolean isToggled;
 	private int buttonId;
+	private Category category;
 	
-	public ToggleButton(int buttonId, int x, int y, boolean isToggled) {
+	public ToggleButton(int buttonId, int x, int y, boolean isToggled, Category category) {
 		super(buttonId, x, y, 16, 16, "");
 		this.buttonX = x;
 		this.buttonY = y;
 		this.isToggled = isToggled;
 		this.buttonId = buttonId;
+		this.category = category;
 	}
 	
 	@Override
@@ -42,6 +46,10 @@ public class ToggleButton extends GuiButton {
 	
 	public int getButtonId() {
 		return buttonId;
+	}
+	
+	public Category getCategory() {
+		return category;
 	}
 
 }

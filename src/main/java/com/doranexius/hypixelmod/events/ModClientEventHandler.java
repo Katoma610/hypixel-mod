@@ -27,6 +27,7 @@ import org.lwjgl.util.vector.Matrix4f;
 
 import com.doranexius.hypixelmod.*;
 import com.doranexius.hypixelmod.cosmetics.HatCosmetic;
+import com.doranexius.hypixelmod.modules.Category;
 import com.doranexius.hypixelmod.modules.Module;
 import com.doranexius.hypixelmod.modules.ModuleManager;
 import com.doranexius.hypixelmod.modules.render.Fullbright;
@@ -72,8 +73,9 @@ public class ModClientEventHandler {
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		//GL11.glDisable(GL11.GL_TEXTURE);
 		
-		for (Module module : ModuleManager.getRenderModList()) {
-			if (module.isToggled()) {
+		for (Module module : ModuleManager.getModList()) {
+			Category modCategory = module.getCategory();
+			if (modCategory.equals(Category.RENDER) && module.isToggled()) {
 				module.onEnable();
 			}
 		}
@@ -133,7 +135,11 @@ public class ModClientEventHandler {
 		      return;
 		}
 		
-		ArmorHUDOverlay.renderArmorOverlay();
+		if (ModuleManager.getModList().get(5).isToggled()) {
+			ArmorHUDOverlay.renderArmorOverlay();
+		}
+		
+		
 	}
 	
 }
