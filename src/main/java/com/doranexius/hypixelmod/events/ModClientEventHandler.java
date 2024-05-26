@@ -4,6 +4,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.event.ClickEvent;
 import net.minecraft.event.ClickEvent.Action;
@@ -126,7 +128,7 @@ public class ModClientEventHandler {
 		      return;
 		}
 
-		if (!(mc.currentScreen == null)) {
+		if (!(mc.currentScreen == null) && !mc.ingameGUI.getChatGUI().getChatOpen()) {
 		      return;
 		}
 
