@@ -17,7 +17,7 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.BlockPos;
 
-public class CommandManager implements ICommand {
+public class MainCommand implements ICommand {
 	
 	private static Map<String, String> commandList = new HashMap<String, String>();
 	

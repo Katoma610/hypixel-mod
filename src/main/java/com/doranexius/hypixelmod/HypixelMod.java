@@ -1,13 +1,11 @@
 package com.doranexius.hypixelmod;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.doranexius.hypixelmod.commands.CommandManager;
+import com.doranexius.hypixelmod.commands.MainCommand;
 import com.doranexius.hypixelmod.events.ModClientEventHandler;
-import com.doranexius.hypixelmod.modules.Module;
 import com.doranexius.hypixelmod.modules.ModuleManager;
 import com.doranexius.hypixelmod.modules.render.Fullbright;
+import com.doranexius.hypixelmod.modules.render.ShowInvisibleEntities;
+import com.doranexius.hypixelmod.modules.render.ShowInvisiblePlayers;
 import com.doranexius.hypixelmod.modules.render.Tracers;
 import com.doranexius.hypixelmod.modules.render.esp.ChestESP;
 import com.doranexius.hypixelmod.modules.render.esp.MobESP;
@@ -15,6 +13,7 @@ import com.doranexius.hypixelmod.modules.render.esp.PlayerESP;
 import com.doranexius.hypixelmod.overlays.ArmorHUDOverlay;
 import com.doranexius.hypixelmod.proxy.CommonProxy;
 
+import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -44,6 +43,9 @@ public class HypixelMod
     	ModuleManager.newMod(new PlayerESP());
     	ModuleManager.newMod(new Tracers());
     	ModuleManager.newMod(new Fullbright());
+    	ModuleManager.newMod(new ShowInvisibleEntities());
+        ModuleManager.newMod(new ShowInvisiblePlayers());
+    	
     	
     	// HUD Modules
     	ModuleManager.newMod(new ArmorHUDOverlay());
@@ -65,6 +67,7 @@ public class HypixelMod
     public void init(FMLInitializationEvent event)
     {
         MinecraftForge.EVENT_BUS.register(new ModClientEventHandler());
+        ClientCommandHandler.instance.registerCommand(new MainCommand());
         startClient();
         
         proxy.init(event);
@@ -76,8 +79,8 @@ public class HypixelMod
         proxy.postInit(event);
     }
     
-    @EventHandler
-    public void onServerStart(FMLServerStartingEvent event) {
-    	event.registerServerCommand(new CommandManager());
-    }
+//    @EventHandler
+//    public void onServerStart(FMLServerStartingEvent event) {
+//        event.registerServerCommand(new MainCommand());
+//    }
 }

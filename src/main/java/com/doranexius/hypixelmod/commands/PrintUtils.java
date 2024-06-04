@@ -15,8 +15,8 @@ public class PrintUtils {
 	public static void printCommands() {
 		print(HypixelMod.BASE_MESSAGE_START + "Here are all the arguments for the main /hypixelmod command: ");
 		
-		for (String arg : CommandManager.getCommandList().keySet()) {
-			print(String.format(" - §b/hypixelmod %s - %s", arg, CommandManager.getCommandList().get(arg)));
+		for (String arg : MainCommand.getCommandList().keySet()) {
+			print(String.format(" - §b/hypixelmod %s - %s", arg, MainCommand.getCommandList().get(arg)));
 		}
 	}
 	

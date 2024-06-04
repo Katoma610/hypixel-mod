@@ -2,15 +2,10 @@ package com.doranexius.hypixelmod.events;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.renderer.GLAllocation;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.event.ClickEvent;
 import net.minecraft.event.ClickEvent.Action;
 import net.minecraft.event.HoverEvent;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatStyle;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -19,44 +14,23 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
-
-import java.nio.FloatBuffer;
-
-import org.apache.commons.lang3.tuple.Triple;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.util.vector.Matrix4f;
-
 import com.doranexius.hypixelmod.*;
 import com.doranexius.hypixelmod.cosmetics.HatCosmetic;
 import com.doranexius.hypixelmod.modules.Category;
 import com.doranexius.hypixelmod.modules.Module;
 import com.doranexius.hypixelmod.modules.ModuleManager;
 import com.doranexius.hypixelmod.modules.render.Fullbright;
-import com.doranexius.hypixelmod.modules.render.Tracers;
-import com.doranexius.hypixelmod.modules.render.esp.ChestESP;
-import com.doranexius.hypixelmod.modules.render.esp.MobESP;
-import com.doranexius.hypixelmod.modules.render.esp.PlayerESP;
 import com.doranexius.hypixelmod.modules.render.waypoints.RenderWaypoints;
 import com.doranexius.hypixelmod.modules.render.waypoints.WaypointManager;
-import com.doranexius.hypixelmod.modules.render.waypoints.WaypointUtils;
 import com.doranexius.hypixelmod.overlays.ArmorHUDOverlay;
 import com.doranexius.hypixelmod.overlays.InfoOverlay;
-import com.doranexius.hypixelmod.renderUtils.WorldToScreen;
 
 public class ModClientEventHandler {
 	
 	public static GuiScreen guiToDisplay = null;
-	
 	@SubscribeEvent
 	public void onPlayerJoinWorld(EntityJoinWorldEvent event) {
-		if (event.entity instanceof EntityPlayer) {
-			EntityPlayer player = (EntityPlayer) event.entity;
-			ChatComponentText comp = new ChatComponentText(String.format(HypixelMod.BASE_MESSAGE_START + "Hi, %s", player.getName()));
-			ChatStyle style = new ChatStyle().setChatClickEvent(new ClickEvent(Action.RUN_COMMAND, "/kill")).setChatHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ChatComponentText("Click this lol")));;
-			comp.setChatStyle(style);
-			player.addChatMessage(comp);
-		}
     	Fullbright.checkFullbright();
 	}
 	

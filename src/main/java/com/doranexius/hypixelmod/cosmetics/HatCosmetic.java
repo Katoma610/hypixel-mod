@@ -5,6 +5,7 @@ import org.lwjgl.opengl.GL11;
 import com.doranexius.hypixelmod.renderUtils.RainbowHatRenderer;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderManager;
 
 public class HatCosmetic {
@@ -19,8 +20,8 @@ public class HatCosmetic {
 	private static double heightIncIfSneaking;
 	
 	public static void drawHat() {
-		GL11.glDisable(GL11.GL_DEPTH_TEST);
-		GL11.glEnable(GL11.GL_BLEND);
+		//GL11.glDisable(GL11.GL_DEPTH_TEST);
+		GlStateManager.enableBlend();
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		
 		heightIncIfSneaking = Minecraft.getMinecraft().thePlayer.isSneaking() ? 0.4 : 0;
@@ -41,8 +42,8 @@ public class HatCosmetic {
 			blueSpeedInc = -blueSpeedInc;
 		}
 		
-		GL11.glDisable(GL11.GL_BLEND);
-		GL11.glEnable(GL11.GL_DEPTH_TEST);
+		GlStateManager.disableBlend();
+		//GL11.glEnable(GL11.GL_DEPTH_TEST);
 	}
 	
 }

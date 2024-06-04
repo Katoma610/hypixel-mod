@@ -100,7 +100,6 @@ public class MainGUI extends GuiScreen {
 	@Override
 	protected void actionPerformed(GuiButton button) throws IOException {
 		if (button instanceof ToggleButton) {
-			System.out.println("Detected toggle press");
 			ToggleButton toggleButton = (ToggleButton) button;
 			toggleButton.toggle();
 			

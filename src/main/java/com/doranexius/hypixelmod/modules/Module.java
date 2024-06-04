@@ -16,6 +16,7 @@ public class Module {
 	
 	public void toggle() {
 		toggled = !toggled;
+		System.out.println(String.format("%s is toggled to: %b", this.name, this.toggled));
 		if (toggled) {
 			InfoOverlay.moduleNamesList.add(this.name);
 		} else {
