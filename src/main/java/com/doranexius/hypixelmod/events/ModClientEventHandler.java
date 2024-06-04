@@ -111,7 +111,7 @@ public class ModClientEventHandler {
 		      return;
 		}
 		
-		if (ModuleManager.getModList().get(5).isToggled()) {
+		if (ArmorHUDOverlay.getToggled()) {
 			ArmorHUDOverlay.renderArmorOverlay();
 		}
 		

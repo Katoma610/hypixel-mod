@@ -8,7 +8,9 @@ import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.entity.player.EntityPlayer;
 
 public class ArmorHUDOverlay extends Module {
-	
+
+	private static boolean isToggled = false;
+
 	public ArmorHUDOverlay() {
 		super("ArmorHUD", Category.HUD);
 	}
@@ -30,6 +32,16 @@ public class ArmorHUDOverlay extends Module {
 	@Override
 	public void onEnable() {
 		renderArmorOverlay();
+	}
+
+	@Override
+	public void toggle(){
+		super.toggle();
+		isToggled = !isToggled;
+	}
+
+	public static boolean getToggled() {
+		return isToggled;
 	}
 	
 }
