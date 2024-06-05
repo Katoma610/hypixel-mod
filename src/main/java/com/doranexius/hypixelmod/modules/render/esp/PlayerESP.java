@@ -4,7 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import com.doranexius.hypixelmod.modules.Category;
 import com.doranexius.hypixelmod.modules.Module;
-import com.doranexius.hypixelmod.renderUtils.RenderBoundingBox;
+import com.doranexius.hypixelmod.utils.RenderBoundingBox;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderManager;

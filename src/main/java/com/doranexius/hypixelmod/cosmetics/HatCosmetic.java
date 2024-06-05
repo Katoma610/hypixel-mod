@@ -2,11 +2,10 @@ package com.doranexius.hypixelmod.cosmetics;
 
 import org.lwjgl.opengl.GL11;
 
-import com.doranexius.hypixelmod.renderUtils.RainbowHatRenderer;
+import com.doranexius.hypixelmod.utils.RainbowHatRenderer;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.entity.RenderManager;
 
 public class HatCosmetic {
 	

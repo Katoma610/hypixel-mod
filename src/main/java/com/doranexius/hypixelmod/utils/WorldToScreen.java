@@ -1,4 +1,4 @@
-package com.doranexius.hypixelmod.renderUtils;
+package com.doranexius.hypixelmod.utils;
 
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector2f;

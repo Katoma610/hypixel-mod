@@ -1,14 +1,6 @@
-package com.doranexius.hypixelmod.renderUtils;
+package com.doranexius.hypixelmod.utils;
 
 import org.lwjgl.opengl.GL11;
-
-import net.minecraft.client.gui.Gui;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.client.renderer.vertex.VertexFormat;
-import net.minecraft.util.Vec3;
 
 public class RenderBoundingBox {
 	

@@ -13,6 +13,7 @@ import com.doranexius.hypixelmod.modules.render.esp.PlayerESP;
 import com.doranexius.hypixelmod.overlays.ArmorHUDOverlay;
 import com.doranexius.hypixelmod.proxy.CommonProxy;
 
+import com.doranexius.hypixelmod.utils.HypixelUtils.FairyGrottoScanner;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -45,6 +46,7 @@ public class HypixelMod
     	ModuleManager.newMod(new Fullbright());
     	ModuleManager.newMod(new ShowInvisibleEntities());
         ModuleManager.newMod(new ShowInvisiblePlayers());
+        ModuleManager.newMod(new FairyGrottoScanner());
     	
     	
     	// HUD Modules
@@ -67,6 +69,7 @@ public class HypixelMod
     public void init(FMLInitializationEvent event)
     {
         MinecraftForge.EVENT_BUS.register(new ModClientEventHandler());
+        MinecraftForge.EVENT_BUS.register(new FairyGrottoScanner());
         ClientCommandHandler.instance.registerCommand(new MainCommand());
         startClient();
         

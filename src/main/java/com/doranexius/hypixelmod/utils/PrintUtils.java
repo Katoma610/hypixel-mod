@@ -1,6 +1,7 @@
-package com.doranexius.hypixelmod.commands;
+package com.doranexius.hypixelmod.utils;
 
 import com.doranexius.hypixelmod.HypixelMod;
+import com.doranexius.hypixelmod.commands.MainCommand;
 import com.doranexius.hypixelmod.modules.render.waypoints.WaypointManager;
 
 import net.minecraft.client.Minecraft;

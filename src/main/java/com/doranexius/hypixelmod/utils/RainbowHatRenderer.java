@@ -1,4 +1,4 @@
-package com.doranexius.hypixelmod.renderUtils;
+package com.doranexius.hypixelmod.utils;
 
 import org.lwjgl.opengl.GL11;
 

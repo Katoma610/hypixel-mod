@@ -1,5 +1,6 @@
 package com.doranexius.hypixelmod.events;
 
+import com.doranexius.hypixelmod.utils.HypixelUtils.FairyGrottoScanner;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,6 +30,7 @@ import com.doranexius.hypixelmod.overlays.InfoOverlay;
 public class ModClientEventHandler {
 	
 	public static GuiScreen guiToDisplay = null;
+
 	@SubscribeEvent
 	public void onPlayerJoinWorld(EntityJoinWorldEvent event) {
     	Fullbright.checkFullbright();
@@ -70,7 +72,7 @@ public class ModClientEventHandler {
 		
 		
 		
-		if (!WaypointManager.getWaypointList().isEmpty()) {
+		if (!WaypointManager.getWaypointList().isEmpty() || !FairyGrottoScanner.getGrottoWaypoints().isEmpty()) {
 			RenderWaypoints.renderWaypoints(event.partialTicks);
 		}
 		
