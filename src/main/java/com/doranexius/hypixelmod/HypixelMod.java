@@ -33,6 +33,8 @@ public class HypixelMod
     public static final String BASE_MESSAGE_START = "§9[§bHypixel §3Mod§9]§b ";
     public static HypixelMod instance = new HypixelMod();
     public static ModuleManager moduleManager;
+
+    private FairyGrottoScanner fairyGrottoInstance = new FairyGrottoScanner();
     
     @SidedProxy(clientSide = "com.doranexius.hypixelmod.proxy.ClientProxy", serverSide = "com.doranexius.hypixelmod.proxy.ServerProxy")
     public static CommonProxy proxy;
@@ -46,7 +48,7 @@ public class HypixelMod
     	ModuleManager.newMod(new Fullbright());
     	ModuleManager.newMod(new ShowInvisibleEntities());
         ModuleManager.newMod(new ShowInvisiblePlayers());
-        ModuleManager.newMod(new FairyGrottoScanner());
+        ModuleManager.newMod(fairyGrottoInstance);
     	
     	
     	// HUD Modules
@@ -69,7 +71,7 @@ public class HypixelMod
     public void init(FMLInitializationEvent event)
     {
         MinecraftForge.EVENT_BUS.register(new ModClientEventHandler());
-        MinecraftForge.EVENT_BUS.register(new FairyGrottoScanner());
+        MinecraftForge.EVENT_BUS.register(fairyGrottoInstance);
         ClientCommandHandler.instance.registerCommand(new MainCommand());
         startClient();
         

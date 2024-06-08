@@ -1,14 +1,11 @@
 package com.doranexius.hypixelmod.events;
 
 import com.doranexius.hypixelmod.utils.HypixelUtils.FairyGrottoScanner;
+import com.doranexius.hypixelmod.utils.HypixelUtils.SkyblockInfo;
+import com.doranexius.hypixelmod.utils.PrintUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.event.ClickEvent;
-import net.minecraft.event.ClickEvent.Action;
-import net.minecraft.event.HoverEvent;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.ChatStyle;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -33,6 +30,7 @@ public class ModClientEventHandler {
 
 	@SubscribeEvent
 	public void onPlayerJoinWorld(EntityJoinWorldEvent event) {
+		if (!event.entity.equals(Minecraft.getMinecraft().thePlayer)) return;
     	Fullbright.checkFullbright();
 	}
 	
@@ -49,7 +47,6 @@ public class ModClientEventHandler {
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		GL11.glDisable(GL11.GL_CULL_FACE);
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
-		//GL11.glDisable(GL11.GL_TEXTURE);
 		
 		for (Module module : ModuleManager.getModList()) {
 			Category modCategory = module.getCategory();
@@ -57,26 +54,20 @@ public class ModClientEventHandler {
 				module.onEnable();
 			}
 		}
-		
-		//GL11.glEnable(GL11.GL_DEPTH_TEST);
-		
+
 		if (Minecraft.getMinecraft().gameSettings.thirdPersonView != 0) {
 			HatCosmetic.drawHat();
 		}
-		
-		//GL11.glDisable(GL11.GL_DEPTH);
-		
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		GL11.glEnable(GL11.GL_CULL_FACE);
-		//GL11.glEnable(GL11.GL_TEXTURE);
-		
-		
-		
-		if (!WaypointManager.getWaypointList().isEmpty() || !FairyGrottoScanner.getGrottoWaypoints().isEmpty()) {
+
+		GL11.glEnable(GL11.GL_DEPTH_TEST);
+
+		if (!WaypointManager.getWaypointList().isEmpty()) {
 			RenderWaypoints.renderWaypoints(event.partialTicks);
 		}
-		
-		GL11.glEnable(GL11.GL_DEPTH_TEST);
+
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glEnable(GL11.GL_CULL_FACE);
+		GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glPopMatrix();
 	}
 	

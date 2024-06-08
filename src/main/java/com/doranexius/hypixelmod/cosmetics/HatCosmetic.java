@@ -23,7 +23,7 @@ public class HatCosmetic {
 		GlStateManager.enableBlend();
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		
-		heightIncIfSneaking = Minecraft.getMinecraft().thePlayer.isSneaking() ? 0.4 : 0;
+		heightIncIfSneaking = Minecraft.getMinecraft().thePlayer.isSneaking() ? 0.3 : 0;
 		
 		GL11.glTranslated(0, 1.9-heightIncIfSneaking, 0);
 		RainbowHatRenderer.drawHat(0.6, r, g, b);

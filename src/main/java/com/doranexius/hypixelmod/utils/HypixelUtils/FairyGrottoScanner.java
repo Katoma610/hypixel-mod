@@ -4,6 +4,7 @@ import com.doranexius.hypixelmod.HypixelMod;
 import com.doranexius.hypixelmod.modules.Category;
 import com.doranexius.hypixelmod.modules.Module;
 import com.doranexius.hypixelmod.modules.render.waypoints.WaypointManager;
+import com.doranexius.hypixelmod.utils.PrintUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockColored;
 import net.minecraft.client.Minecraft;
@@ -37,12 +38,12 @@ public class FairyGrottoScanner extends Module {
     private static int grottoNum = 1;
 
     public FairyGrottoScanner() {
-        super("FairyGrottoFinder", Category.RENDER);
+        super("Fairy Grotto Finder", Category.RENDER);
     }
 
     @SubscribeEvent
     public void onChunkLoad(ChunkEvent.Load event) {
-        Minecraft mc = Minecraft.getMinecraft();
+        if (!this.isToggled()) return;
         CompletableFuture.runAsync(() -> grottoChunkScan(event.getChunk()));
     }
 
