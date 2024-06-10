@@ -41,7 +41,8 @@ public class ModClientEventHandler {
 	
 	@SubscribeEvent
 	public void onLastEvent(RenderWorldLastEvent event) {
-		
+		HatCosmetic.drawHat(event.partialTicks);
+
 		GL11.glPushMatrix();
 		GL11.glDisable(GL11.GL_LIGHTING);
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
@@ -51,12 +52,8 @@ public class ModClientEventHandler {
 		for (Module module : ModuleManager.getModList()) {
 			Category modCategory = module.getCategory();
 			if (modCategory.equals(Category.RENDER) && module.isToggled()) {
-				module.onEnable();
+				module.onEnable(event.partialTicks);
 			}
-		}
-
-		if (Minecraft.getMinecraft().gameSettings.thirdPersonView != 0) {
-			HatCosmetic.drawHat();
 		}
 
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
@@ -69,6 +66,8 @@ public class ModClientEventHandler {
 		GL11.glEnable(GL11.GL_CULL_FACE);
 		GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glPopMatrix();
+
+
 	}
 	
 	@SubscribeEvent
@@ -78,9 +77,7 @@ public class ModClientEventHandler {
 		}
 		
 		InfoOverlay.printInfo(HypixelMod.NAME);
-		
-		
-		
+
 		if (guiToDisplay != null) {
 			Minecraft.getMinecraft().displayGuiScreen(guiToDisplay);
 			guiToDisplay = null;
@@ -107,8 +104,5 @@ public class ModClientEventHandler {
 		if (ArmorHUDOverlay.getToggled()) {
 			ArmorHUDOverlay.renderArmorOverlay();
 		}
-		
-		
 	}
-	
 }

@@ -32,13 +32,13 @@ import java.util.stream.Collectors;
 
 public class FairyGrottoScanner extends Module {
 
-    private static List<Triple<Integer, Integer, Integer>> coords = new ArrayList<>();
-    private static Map<String, Triple<Integer, Integer, Integer>> waypoints = new HashMap<>();
+//    private static List<Triple<Integer, Integer, Integer>> coords = new ArrayList<>();
+//    private static Map<String, Triple<Integer, Integer, Integer>> waypoints = new HashMap<>();
 
     private static int grottoNum = 1;
 
     public FairyGrottoScanner() {
-        super("Fairy Grotto Finder", Category.RENDER);
+        super("Fairy Grotto Finder §6HB", Category.RENDER);
     }
 
     @SubscribeEvent
@@ -74,14 +74,14 @@ public class FairyGrottoScanner extends Module {
     public void onUnload(WorldEvent.Unload event){
 //        waypoints.clear();
 //        coords.clear();
-        Map<String, Triple<Integer, Integer, Integer>> filteredWaypoints = WaypointManager.getWaypointList().entrySet().stream().filter(waypoint -> !waypoint.getKey().contains("Grotto")).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));;
+        Map<String, Triple<Integer, Integer, Integer>> filteredWaypoints = WaypointManager.getWaypointList().entrySet().stream().filter(waypoint -> !waypoint.getKey().contains("Grotto")).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
         WaypointManager.getWaypointList().clear();
         WaypointManager.getWaypointList().putAll(filteredWaypoints);
         grottoNum = 1;
     }
 
-    public static Map<String, Triple<Integer, Integer, Integer>> getGrottoWaypoints() {
-        return waypoints;
-    }
+//    public static Map<String, Triple<Integer, Integer, Integer>> getGrottoWaypoints() {
+//        return waypoints;
+//    }
 
 }

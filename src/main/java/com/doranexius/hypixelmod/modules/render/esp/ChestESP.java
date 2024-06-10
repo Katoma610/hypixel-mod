@@ -4,7 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import com.doranexius.hypixelmod.modules.Category;
 import com.doranexius.hypixelmod.modules.Module;
-import com.doranexius.hypixelmod.utils.RenderBoundingBox;
+import com.doranexius.hypixelmod.utils.BoundingBoxUtils;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -27,7 +27,7 @@ public class ChestESP extends Module {
 		for (TileEntity block : Minecraft.getMinecraft().theWorld.loadedTileEntityList) {
 			if (block instanceof TileEntityChest) {
 				GL11.glTranslated(lastX + block.getPos().getX()+0.5, lastY + block.getPos().getY(), lastZ + block.getPos().getZ()+0.5);
-				RenderBoundingBox.renderBB(1, 1, 0, 255, 0);
+				BoundingBoxUtils.renderBoundingBox(1, 1, 0, 255, 0);
 				lastX = -block.getPos().getX()-0.5;
 				lastY = -block.getPos().getY();
 				lastZ = -block.getPos().getZ()-0.5;
@@ -37,7 +37,7 @@ public class ChestESP extends Module {
 	}
 	
 	@Override
-	public void onEnable() {
+	public void onEnable(float partialTicks) {
 		drawBlockOutline();
 	}
 	

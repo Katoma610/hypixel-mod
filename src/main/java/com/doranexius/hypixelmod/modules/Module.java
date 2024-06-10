@@ -24,7 +24,7 @@ public class Module {
 		}
 	}
 	
-	public void onEnable() {}
+	public void onEnable(float partialTicks) {}
 	public void onDisable() {}
 	public void onRender() {}
 	public void onUpdate() {}

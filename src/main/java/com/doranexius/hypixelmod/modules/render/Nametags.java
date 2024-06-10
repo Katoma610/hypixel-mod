@@ -1,23 +1,30 @@
-package com.doranexius.hypixelmod.utils;
+package com.doranexius.hypixelmod.modules.render;
 
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import org.lwjgl.opengl.GL11;
-
+import com.doranexius.hypixelmod.modules.Category;
+import com.doranexius.hypixelmod.modules.Module;
+import com.doranexius.hypixelmod.utils.TextUtils;
+import com.doranexius.hypixelmod.utils.WaypointUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.entity.player.EntityPlayer;
 
-import java.util.Arrays;
-import java.util.List;
+public class Nametags extends Module {
 
-public class WaypointUtils {
-	
-	public static void renderWaypointText(String str, BlockPos loc, float partialTicks) {
+    public Nametags() {
+        super("Nametags", Category.RENDER);
+    }
+
+    public static void drawNametags(float partialTicks) {
+
+        for (EntityPlayer player : Minecraft.getMinecraft().theWorld.playerEntities) {
+            if (player.getDisplayNameString().contains(" ") || (player.isInvisible() && !ShowInvisiblePlayers.isToggled)) continue;
+
+            nametagsUtil(player.getDisplayNameString(), player.posX, player.posY, player.posZ, partialTicks);
+        }
+    }
+
+    private static void nametagsUtil(String str, double playerX, double playerY, double playerZ, float partialTicks){
         GlStateManager.alphaFunc(516, 0.1F);
 
         GlStateManager.pushMatrix();
@@ -27,9 +34,9 @@ public class WaypointUtils {
         double viewerY = viewer.lastTickPosY + (viewer.posY - viewer.lastTickPosY) * partialTicks;
         double viewerZ = viewer.lastTickPosZ + (viewer.posZ - viewer.lastTickPosZ) * partialTicks;
 
-        double x = loc.getX() - viewerX - 0.5;
-        double y = loc.getY() - viewerY - viewer.getEyeHeight() + 1.5;
-        double z = loc.getZ() - viewerZ - 0.5;
+        double x = playerX - viewerX;
+        double y = playerY - viewerY + 0.65;
+        double z = playerZ - viewerZ;
 
         double distSq = x*x + y*y + z*z;
         double dist = Math.sqrt(distSq);
@@ -41,7 +48,6 @@ public class WaypointUtils {
         GlStateManager.translate(x, y, z);
         GlStateManager.translate(0, viewer.getEyeHeight(), 0);
 
-        //drawNametag(str);
         TextUtils.draw2DFloatingText(str);
 
         GlStateManager.rotate(-Minecraft.getMinecraft().getRenderManager().playerViewY, 0.0F, 1.0F, 0.0F);
@@ -50,11 +56,13 @@ public class WaypointUtils {
         GlStateManager.rotate(-Minecraft.getMinecraft().getRenderManager().playerViewX, 1.0F, 0.0F, 0.0F);
         GlStateManager.rotate(Minecraft.getMinecraft().getRenderManager().playerViewY, 0.0F, 1.0F, 0.0F);
 
-        //drawNametag(EnumChatFormatting.YELLOW.toString()+Math.round(dist)+"m");
-        TextUtils.draw2DFloatingText(EnumChatFormatting.YELLOW.toString()+Math.round(dist)+"m");
-
         GlStateManager.popMatrix();
 
         GlStateManager.disableLighting();
+    }
+
+    @Override
+    public void onEnable(float partialTicks) {
+        drawNametags(partialTicks);
     }
 }

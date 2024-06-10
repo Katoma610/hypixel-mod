@@ -2,14 +2,9 @@ package com.doranexius.hypixelmod.utils;
 
 import org.lwjgl.opengl.GL11;
 
-public class RenderBoundingBox {
-	
-	public RenderBoundingBox() {
-		
-	}
-	
-	// TODO: Add support for other mob types
-	public static void renderBB(double width, double height, double r, double g, double b) {
+public class BoundingBoxUtils {
+
+	public static void renderBoundingBox(double width, double height, double r, double g, double b) {
 		// Some necessary properties
 		GL11.glColor3d(r, g, b);
 	    GL11.glLineWidth(2.0f);

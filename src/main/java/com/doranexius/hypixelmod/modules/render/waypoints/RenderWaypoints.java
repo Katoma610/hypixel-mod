@@ -1,21 +1,17 @@
 package com.doranexius.hypixelmod.modules.render.waypoints;
 
-import com.doranexius.hypixelmod.utils.HypixelUtils.FairyGrottoScanner;
 import com.doranexius.hypixelmod.utils.WaypointUtils;
 import net.minecraft.client.renderer.GlStateManager;
 import org.apache.commons.lang3.tuple.Triple;
 import org.lwjgl.opengl.GL11;
 
-import com.doranexius.hypixelmod.utils.RenderBoundingBox;
+import com.doranexius.hypixelmod.utils.BoundingBoxUtils;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.BlockPos;
 
 import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
 
 public class RenderWaypoints {
 	
@@ -58,7 +54,7 @@ public class RenderWaypoints {
 			GL11.glEnd();
 
 			GL11.glTranslated(-playerX + waypoint.getLeft()-0.5, -playerY + waypoint.getMiddle(), -playerZ + waypoint.getRight()-0.5);
-			RenderBoundingBox.renderBB(1, 1, r, g, b);
+			BoundingBoxUtils.renderBoundingBox(1, 1, r, g, b);
 
 			GL11.glEnable(GL11.GL_TEXTURE_2D);
 			GlStateManager.enableDepth();

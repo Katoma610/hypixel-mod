@@ -3,10 +3,7 @@ package com.doranexius.hypixelmod;
 import com.doranexius.hypixelmod.commands.MainCommand;
 import com.doranexius.hypixelmod.events.ModClientEventHandler;
 import com.doranexius.hypixelmod.modules.ModuleManager;
-import com.doranexius.hypixelmod.modules.render.Fullbright;
-import com.doranexius.hypixelmod.modules.render.ShowInvisibleEntities;
-import com.doranexius.hypixelmod.modules.render.ShowInvisiblePlayers;
-import com.doranexius.hypixelmod.modules.render.Tracers;
+import com.doranexius.hypixelmod.modules.render.*;
 import com.doranexius.hypixelmod.modules.render.esp.ChestESP;
 import com.doranexius.hypixelmod.modules.render.esp.MobESP;
 import com.doranexius.hypixelmod.modules.render.esp.PlayerESP;
@@ -49,6 +46,7 @@ public class HypixelMod
     	ModuleManager.newMod(new ShowInvisibleEntities());
         ModuleManager.newMod(new ShowInvisiblePlayers());
         ModuleManager.newMod(fairyGrottoInstance);
+        ModuleManager.newMod(new Nametags());
     	
     	
     	// HUD Modules

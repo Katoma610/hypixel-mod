@@ -2,7 +2,7 @@ package com.doranexius.hypixelmod.modules.render.esp;
 
 import org.lwjgl.opengl.GL11;
 
-import com.doranexius.hypixelmod.utils.RenderBoundingBox;
+import com.doranexius.hypixelmod.utils.BoundingBoxUtils;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -34,7 +34,7 @@ public class MobESP extends Module {
     		lastZ = -entity.posZ;
     		
 	    	if(entity instanceof EntitySkeleton) {
-	    		RenderBoundingBox.renderBB(1, 2, 255, 0, 0);
+	    		BoundingBoxUtils.renderBoundingBox(1, 2, 255, 0, 0);
 	    	}
 	    }
 	    
@@ -42,7 +42,7 @@ public class MobESP extends Module {
 	}
 	
 	@Override
-	public void onEnable() {
+	public void onEnable(float partialTicks) {
 		drawMobESP();
 	}
 }

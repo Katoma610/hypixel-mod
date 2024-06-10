@@ -30,7 +30,7 @@ public class ArmorHUDOverlay extends Module {
 	}
 	
 	@Override
-	public void onEnable() {
+	public void onEnable(float partialTicks) {
 		renderArmorOverlay();
 	}
 
