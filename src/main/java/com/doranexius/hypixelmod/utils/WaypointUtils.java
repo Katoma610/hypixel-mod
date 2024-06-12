@@ -55,6 +55,6 @@ public class WaypointUtils {
 
         GlStateManager.popMatrix();
 
-        GlStateManager.disableLighting();
+        //GlStateManager.disableLighting();
     }
 }

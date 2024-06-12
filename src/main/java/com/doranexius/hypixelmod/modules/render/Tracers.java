@@ -1,5 +1,6 @@
 package com.doranexius.hypixelmod.modules.render;
 
+import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.opengl.GL11;
 
 import com.doranexius.hypixelmod.modules.Category;
@@ -22,6 +23,11 @@ public class Tracers extends Module {
 		double playerX = renderManager.viewerPosX;
 		double playerY = renderManager.viewerPosY;
 		double playerZ = renderManager.viewerPosZ;
+
+		GlStateManager.pushMatrix();
+		GlStateManager.disableDepth();
+		GlStateManager.disableCull();
+		GlStateManager.disableTexture2D();
 		
 		for (Entity entity : Minecraft.getMinecraft().theWorld.getLoadedEntityList()) {
 			if (entity instanceof EntitySkeleton) {
@@ -37,6 +43,11 @@ public class Tracers extends Module {
 				GL11.glEnd();
 			}
 		}
+
+		GlStateManager.enableDepth();
+		GlStateManager.enableCull();
+		GlStateManager.enableTexture2D();
+		GlStateManager.popMatrix();
 	}
 	
 	@Override

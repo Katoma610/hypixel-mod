@@ -1,5 +1,6 @@
 package com.doranexius.hypixelmod.modules.render.esp;
 
+import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.opengl.GL11;
 
 import com.doranexius.hypixelmod.modules.Category;
@@ -22,6 +23,11 @@ public class PlayerESP extends Module {
 		double lastY = -renderManager.viewerPosY;
 		double lastZ = -renderManager.viewerPosZ;
 
+		GlStateManager.pushMatrix();
+		GlStateManager.disableDepth();
+		GlStateManager.disableCull();
+		GlStateManager.disableTexture2D();
+
 	    for (EntityPlayer player : Minecraft.getMinecraft().theWorld.playerEntities) {
 			if (player.getDisplayNameString().contains(" ") || player.equals(Minecraft.getMinecraft().thePlayer)) continue;
 
@@ -31,8 +37,11 @@ public class PlayerESP extends Module {
     		lastZ = -player.posZ;
 			BoundingBoxUtils.renderBoundingBox(1, 2, 0, 0, 255);
 	    }
-	    
-	    GL11.glTranslated(lastX+renderManager.viewerPosX, lastY+renderManager.viewerPosY, lastZ+renderManager.viewerPosZ);
+		GlStateManager.enableDepth();
+		GlStateManager.enableCull();
+		GlStateManager.enableTexture2D();
+		GlStateManager.popMatrix();
+	    //GL11.glTranslated(lastX+renderManager.viewerPosX, lastY+renderManager.viewerPosY, lastZ+renderManager.viewerPosZ);
 	}
 	
 	@Override

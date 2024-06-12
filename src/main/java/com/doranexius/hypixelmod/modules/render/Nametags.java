@@ -18,7 +18,7 @@ public class Nametags extends Module {
     public static void drawNametags(float partialTicks) {
 
         for (EntityPlayer player : Minecraft.getMinecraft().theWorld.playerEntities) {
-            if (player.getDisplayNameString().contains(" ") || (player.isInvisible() && !ShowInvisiblePlayers.isToggled)) continue;
+            if (player.getDisplayNameString().contains(" ") || (player.isInvisible() && !ShowInvisiblePlayers.isToggled) || player.equals(Minecraft.getMinecraft().thePlayer)) continue;
 
             nametagsUtil(player.getDisplayNameString(), player.posX, player.posY, player.posZ, partialTicks);
         }
@@ -58,7 +58,7 @@ public class Nametags extends Module {
 
         GlStateManager.popMatrix();
 
-        GlStateManager.disableLighting();
+        //GlStateManager.disableLighting();
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.doranexius.hypixelmod.events;
 import com.doranexius.hypixelmod.utils.HypixelUtils.FairyGrottoScanner;
 import com.doranexius.hypixelmod.utils.HypixelUtils.SkyblockInfo;
 import com.doranexius.hypixelmod.utils.PrintUtils;
+import com.doranexius.hypixelmod.utils.ScoreboardManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
@@ -31,6 +32,7 @@ public class ModClientEventHandler {
 	@SubscribeEvent
 	public void onPlayerJoinWorld(EntityJoinWorldEvent event) {
 		if (!event.entity.equals(Minecraft.getMinecraft().thePlayer)) return;
+		//PrintUtils.print(ScoreboardManager.getScoreboardTitle());
     	Fullbright.checkFullbright();
 	}
 	
@@ -43,11 +45,11 @@ public class ModClientEventHandler {
 	public void onLastEvent(RenderWorldLastEvent event) {
 		HatCosmetic.drawHat(event.partialTicks);
 
-		GL11.glPushMatrix();
-		GL11.glDisable(GL11.GL_LIGHTING);
-		GL11.glDisable(GL11.GL_DEPTH_TEST);
-		GL11.glDisable(GL11.GL_CULL_FACE);
-		GL11.glDisable(GL11.GL_TEXTURE_2D);
+//		GL11.glPushMatrix();
+//		GL11.glDisable(GL11.GL_LIGHTING);
+//		GL11.glDisable(GL11.GL_DEPTH_TEST);
+//		GL11.glDisable(GL11.GL_CULL_FACE);
+//		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		
 		for (Module module : ModuleManager.getModList()) {
 			Category modCategory = module.getCategory();
@@ -56,16 +58,16 @@ public class ModClientEventHandler {
 			}
 		}
 
-		GL11.glEnable(GL11.GL_DEPTH_TEST);
+		//GL11.glEnable(GL11.GL_DEPTH_TEST);
 
 		if (!WaypointManager.getWaypointList().isEmpty()) {
 			RenderWaypoints.renderWaypoints(event.partialTicks);
 		}
 
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		GL11.glEnable(GL11.GL_CULL_FACE);
-		GL11.glEnable(GL11.GL_LIGHTING);
-		GL11.glPopMatrix();
+//		GL11.glEnable(GL11.GL_TEXTURE_2D);
+//		GL11.glEnable(GL11.GL_CULL_FACE);
+//		GL11.glEnable(GL11.GL_LIGHTING);
+//		GL11.glPopMatrix();
 
 
 	}
@@ -85,7 +87,7 @@ public class ModClientEventHandler {
 	}
 	
 	@SubscribeEvent
-	public void onTick(TickEvent.RenderTickEvent event) {
+	public void onRenderTick(TickEvent.RenderTickEvent event) {
 		Minecraft mc = Minecraft.getMinecraft();
 		
 		if (event.phase.equals(TickEvent.Phase.START)) {
@@ -104,5 +106,10 @@ public class ModClientEventHandler {
 		if (ArmorHUDOverlay.getToggled()) {
 			ArmorHUDOverlay.renderArmorOverlay();
 		}
+	}
+
+	@SubscribeEvent
+	public void onTick(TickEvent.ClientTickEvent event) {
+		ScoreboardManager.tick();
 	}
 }

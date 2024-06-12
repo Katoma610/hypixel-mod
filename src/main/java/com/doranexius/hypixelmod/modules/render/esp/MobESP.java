@@ -1,5 +1,6 @@
 package com.doranexius.hypixelmod.modules.render.esp;
 
+import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.opengl.GL11;
 
 import com.doranexius.hypixelmod.utils.BoundingBoxUtils;
@@ -23,10 +24,17 @@ public class MobESP extends Module {
 	
 	public static void drawMobESP() {
 		RenderManager renderManager = Minecraft.getMinecraft().getRenderManager();
+
 		double lastX = -renderManager.viewerPosX;
 		double lastY = -renderManager.viewerPosY;
 		double lastZ = -renderManager.viewerPosZ;
-		
+
+		GlStateManager.pushMatrix();
+		GlStateManager.disableDepth();
+		GlStateManager.disableCull();
+		GlStateManager.disableTexture2D();
+		GlStateManager.resetColor();
+
 	    for (Entity entity : Minecraft.getMinecraft().theWorld.getLoadedEntityList()) {
 	    	GL11.glTranslated(lastX+entity.posX, lastY+entity.posY, lastZ+entity.posZ);
     		lastX = -entity.posX;
@@ -37,8 +45,11 @@ public class MobESP extends Module {
 	    		BoundingBoxUtils.renderBoundingBox(1, 2, 255, 0, 0);
 	    	}
 	    }
-	    
-	    GL11.glTranslated(lastX+renderManager.viewerPosX, lastY+renderManager.viewerPosY, lastZ+renderManager.viewerPosZ);
+		GlStateManager.enableDepth();
+		GlStateManager.enableCull();
+		GlStateManager.enableTexture2D();
+		GlStateManager.popMatrix();
+	    //GL11.glTranslated(lastX+renderManager.viewerPosX, lastY+renderManager.viewerPosY, lastZ+renderManager.viewerPosZ);
 	}
 	
 	@Override

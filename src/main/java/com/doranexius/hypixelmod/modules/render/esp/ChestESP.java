@@ -1,5 +1,6 @@
 package com.doranexius.hypixelmod.modules.render.esp;
 
+import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.opengl.GL11;
 
 import com.doranexius.hypixelmod.modules.Category;
@@ -23,6 +24,11 @@ public class ChestESP extends Module {
 		double lastX = -renderManager.viewerPosX;
 		double lastY = -renderManager.viewerPosY;
 		double lastZ = -renderManager.viewerPosZ;
+
+		GlStateManager.pushMatrix();
+		GlStateManager.disableDepth();
+		GlStateManager.disableCull();
+		GlStateManager.disableTexture2D();
 		
 		for (TileEntity block : Minecraft.getMinecraft().theWorld.loadedTileEntityList) {
 			if (block instanceof TileEntityChest) {
@@ -33,7 +39,11 @@ public class ChestESP extends Module {
 				lastZ = -block.getPos().getZ()-0.5;
 			}
 		}
-		GL11.glTranslated(lastX+renderManager.viewerPosX, lastY+renderManager.viewerPosY, lastZ+renderManager.viewerPosZ);
+		//GL11.glTranslated(lastX+renderManager.viewerPosX, lastY+renderManager.viewerPosY, lastZ+renderManager.viewerPosZ);
+		GlStateManager.enableDepth();
+		GlStateManager.enableCull();
+		GlStateManager.enableTexture2D();
+		GlStateManager.popMatrix();
 	}
 	
 	@Override

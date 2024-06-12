@@ -57,12 +57,12 @@ public class RainbowHatRenderer {
         GL11.glPushMatrix();
         GL11.glTranslated((double) d5, (double) ((float) (d6 + (double) (entityPlayer.height / 2.0f) + d8)), (double) d7);
         GL11.glBlendFunc((int) 770, (int) 771);
-        GL11.glEnable((int) 3042);
-        GL11.glDisable((int) 2896);
-        GL11.glDisable((int) 3553);
-        GL11.glDisable((int) 2884);
+        GL11.glEnable(GL11.GL_BLEND);
+        //GL11.glDisable(GL11.GL_LIGHTING);
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        GL11.glDisable(GL11.GL_CULL_FACE);
         GL11.glRotatef((float) (-entityPlayer.rotationYaw), (float) 0.0f, (float) 1.0f, (float) 0.0f);
-        GL11.glBegin((int) 6);
+        GL11.glBegin(GL11.GL_TRIANGLE_FAN);
         GL11.glVertex3d((double) 0.0, 0.3, (double) 0.0);
         double d9 = 0.6;
         for (int i2 = 0; i2 < 361; ++i2) {
@@ -73,10 +73,10 @@ public class RainbowHatRenderer {
         GL11.glVertex3d((double) 0.0, (double) 0.3, (double) 0.0);
         GL11.glEnd();
         GlStateManager.resetColor();
-        GL11.glEnable((int) 2884);
-        GL11.glEnable((int) 3553);
-        GL11.glEnable((int) 2896);
-        GL11.glDisable((int) 3042);
+        GL11.glEnable(GL11.GL_CULL_FACE);
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        //GL11.glEnable(GL11.GL_LIGHTING);
+        GL11.glDisable(GL11.GL_BLEND);
         GL11.glPopMatrix();
     }
 	
