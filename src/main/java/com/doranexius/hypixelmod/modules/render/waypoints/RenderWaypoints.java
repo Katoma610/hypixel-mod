@@ -64,6 +64,7 @@ public class RenderWaypoints {
 
 			GL11.glEnd();
 
+			GlStateManager.pushMatrix();
 			GL11.glTranslated(-playerX + waypoint.getLeft()-0.5, -playerY + waypoint.getMiddle(), -playerZ + waypoint.getRight()-0.5);
 			//GlStateManager.resetColor();
 			BoundingBoxUtils.renderBoundingBox(1, 1, r, g, b);
@@ -72,8 +73,8 @@ public class RenderWaypoints {
 			GlStateManager.enableTexture2D();
 			GlStateManager.enableDepth();
 
-			//GL11.glTranslated(0, 1.5, 0);
-			GL11.glTranslated(playerX - waypoint.getLeft()+0.5, playerY - waypoint.getMiddle(), playerZ - waypoint.getRight()+0.5);
+			GlStateManager.popMatrix();
+			//GL11.glTranslated(playerX - waypoint.getLeft()-0.5, playerY - waypoint.getMiddle(), playerZ - waypoint.getRight()-0.5);
 			WaypointUtils.renderWaypointText(name, new BlockPos(waypoint.getLeft(), waypoint.getMiddle(), waypoint.getRight()), partialTicks);
 
 			GlStateManager.disableTexture2D();
