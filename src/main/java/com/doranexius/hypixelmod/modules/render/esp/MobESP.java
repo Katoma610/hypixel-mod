@@ -15,11 +15,17 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import com.doranexius.hypixelmod.modules.Category;
 import com.doranexius.hypixelmod.modules.Module;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MobESP extends Module {
-	
+
 	@SideOnly(Side.CLIENT)
 	public MobESP() {
-		super("MobESP", Category.RENDER);
+		super("MobESP", Category.RENDER, new HashMap<String, Boolean>() {{
+			put("Hostile", false);
+			put("Passive", false);
+		}});
 	}
 	
 	public static void drawMobESP() {

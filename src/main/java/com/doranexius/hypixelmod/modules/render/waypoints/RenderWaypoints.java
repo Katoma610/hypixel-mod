@@ -15,8 +15,6 @@ import java.util.Map;
 
 public class RenderWaypoints {
 
-	public static String currName = "";
-
 	public static void renderWaypoints(float partialTicks) {
 		renderWaypointsUtil(WaypointManager.getWaypointList(), partialTicks);
 	}
@@ -35,8 +33,6 @@ public class RenderWaypoints {
 		GlStateManager.disableTexture2D();
 
 		for (String name : waypoints.keySet()) {
-			//System.out.println("Rendering " + name);
-			currName = name;
 			int r = 0;
 			int g = 255;
 			int b = 0;
@@ -49,13 +45,7 @@ public class RenderWaypoints {
 			Triple<Integer, Integer, Integer> waypoint = waypoints.get(name);
 
 			GL11.glColor3d(r, g, b);
-
 			GL11.glLineWidth(2.0f);
-			//GL11.glDisable(GL11.GL_TEXTURE_2D);
-
-			//GlStateManager.disableDepth();
-			//GlStateManager.pushMatrix();
-
 			GL11.glBegin(GL11.GL_LINE_STRIP);
 
 			GL11.glVertex3d(0,0,0);
@@ -66,20 +56,16 @@ public class RenderWaypoints {
 
 			GlStateManager.pushMatrix();
 			GL11.glTranslated(-playerX + waypoint.getLeft()-0.5, -playerY + waypoint.getMiddle(), -playerZ + waypoint.getRight()-0.5);
-			//GlStateManager.resetColor();
 			BoundingBoxUtils.renderBoundingBox(1, 1, r, g, b);
 
-			//GL11.glEnable(GL11.GL_TEXTURE_2D);
 			GlStateManager.enableTexture2D();
 			GlStateManager.enableDepth();
 
 			GlStateManager.popMatrix();
-			//GL11.glTranslated(playerX - waypoint.getLeft()-0.5, playerY - waypoint.getMiddle(), playerZ - waypoint.getRight()-0.5);
 			WaypointUtils.renderWaypointText(name, new BlockPos(waypoint.getLeft(), waypoint.getMiddle(), waypoint.getRight()), partialTicks);
 
 			GlStateManager.disableTexture2D();
 			GlStateManager.disableDepth();
-			//GlStateManager.popMatrix();
 		}
 
 		GlStateManager.enableDepth();

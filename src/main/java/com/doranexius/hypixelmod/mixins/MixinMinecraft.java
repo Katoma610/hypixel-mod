@@ -13,6 +13,6 @@ public class MixinMinecraft {
 	
 	@ModifyArg(method = "createDisplay", at = @At(value = "INVOKE", target = "Lorg/lwjgl/opengl/Display;setTitle(Ljava/lang/String;)V"))
     public String createDisplay(String newTitle) {
-		return "HypixelMod";
+		return "HypixelMod by DoraneXius";
     }
 }

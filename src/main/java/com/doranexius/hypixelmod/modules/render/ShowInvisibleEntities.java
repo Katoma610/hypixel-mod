@@ -8,7 +8,7 @@ public class ShowInvisibleEntities extends Module {
 	public static boolean isToggled = false;
 	
 	public ShowInvisibleEntities() {
-		super("Show Invisible Entities", Category.RENDER);
+		super("Invis. Entities", Category.RENDER);
 	}
 	
 	@Override

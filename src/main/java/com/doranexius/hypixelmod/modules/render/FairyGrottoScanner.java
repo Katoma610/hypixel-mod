@@ -1,14 +1,12 @@
-package com.doranexius.hypixelmod.utils.HypixelUtils;
+package com.doranexius.hypixelmod.modules.render;
 
 import com.doranexius.hypixelmod.HypixelMod;
 import com.doranexius.hypixelmod.modules.Category;
 import com.doranexius.hypixelmod.modules.Module;
 import com.doranexius.hypixelmod.modules.render.waypoints.WaypointManager;
-import com.doranexius.hypixelmod.utils.PrintUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockColored;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.event.ClickEvent;
 import net.minecraft.event.HoverEvent;
@@ -23,9 +21,6 @@ import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.apache.commons.lang3.tuple.Triple;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
@@ -38,7 +33,7 @@ public class FairyGrottoScanner extends Module {
     private static int grottoNum = 1;
 
     public FairyGrottoScanner() {
-        super("Fairy Grotto Finder §6HB", Category.RENDER);
+        super("Grotto Find", Category.HYPIXEL);
     }
 
     @SubscribeEvent

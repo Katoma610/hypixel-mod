@@ -12,6 +12,8 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 
+import java.util.HashMap;
+
 public class ChestESP extends Module {
 	
 	public ChestESP() {

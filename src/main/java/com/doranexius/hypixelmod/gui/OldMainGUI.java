@@ -19,7 +19,7 @@ import net.minecraft.client.renderer.GlStateManager;
 
 import com.doranexius.hypixelmod.modules.Module;
 
-public class MainGUI extends GuiScreen {
+public class OldMainGUI extends GuiScreen {
 	
 	private String currCategory = "None";
 	private CategoryButton lastCategoryButton = null;
@@ -82,13 +82,17 @@ public class MainGUI extends GuiScreen {
 		
 		if (!currCategory.equals("None")) {
 			drawCenteredString(fontRendererObj, currCategory + " Modules", width / 2 + 50, height / 2 - 190, 0xFF787878);
-			if (currCategory.equals("RENDER")) {
-				this.drawCategory(width / 2 - 100, height / 2 - 200, 300, 400, Category.RENDER);
-			} else if (currCategory.equals("MOVEMENT")) {
-				this.drawCategory(width / 2 - 100, height / 2 - 200, 300, 400, null);
-			} else if (currCategory.equals("HUD")) {
-				this.drawCategory(width / 2 - 100, height / 2 - 200, 300, 400, Category.HUD);
-			}
+            switch (currCategory) {
+                case "RENDER":
+                    this.drawCategory(width / 2 - 100, height / 2 - 200, 300, 400, Category.RENDER);
+                    break;
+                case "MOVEMENT":
+                    this.drawCategory(width / 2 - 100, height / 2 - 200, 300, 400, null);
+                    break;
+                case "HUD":
+                    this.drawCategory(width / 2 - 100, height / 2 - 200, 300, 400, Category.HUD);
+                    break;
+            }
 		} else {
 			drawCenteredString(fontRendererObj, "No category is selected.", width / 2 + 50, height / 2, 0xFF787878);
 			drawCenteredString(fontRendererObj, "Select the module category from the list on the left.", width / 2 + 50, height / 2 + 15, 0xFF787878);

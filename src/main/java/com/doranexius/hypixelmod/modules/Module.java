@@ -1,16 +1,28 @@
 package com.doranexius.hypixelmod.modules;
 
 import com.doranexius.hypixelmod.overlays.InfoOverlay;
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Module {
 	
 	private String name;
 	private boolean toggled;
 	private Category category;
+	private HashMap<String, Boolean> options = new HashMap<>();
 	
 	public Module(String name, Category c) {
 		this.name = name;
 		this.category = c;
+		toggled = false;
+	}
+
+	public Module(String name, Category c, HashMap<String, Boolean> options) {
+		this.name = name;
+		this.category = c;
+		this.options = options;
 		toggled = false;
 	}
 	
@@ -41,5 +53,7 @@ public class Module {
 		return category;
 	}
 
-	
+	public HashMap<String, Boolean> getOptions() {
+		return options;
+	}
 }

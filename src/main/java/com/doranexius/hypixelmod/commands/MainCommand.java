@@ -7,10 +7,9 @@ import java.util.Map;
 
 import com.doranexius.hypixelmod.HypixelMod;
 import com.doranexius.hypixelmod.events.ModClientEventHandler;
-import com.doranexius.hypixelmod.gui.MainGUI;
+import com.doranexius.hypixelmod.gui.NewMainGUI;
 import com.doranexius.hypixelmod.modules.render.waypoints.WaypointManager;
 
-import com.doranexius.hypixelmod.utils.HypixelUtils.FairyGrottoScanner;
 import com.doranexius.hypixelmod.utils.PrintUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.command.CommandException;
@@ -18,7 +17,6 @@ import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.BlockPos;
-import net.minecraft.world.chunk.Chunk;
 
 public class MainCommand implements ICommand {
 	
@@ -89,7 +87,7 @@ public class MainCommand implements ICommand {
 				}
 				
 			} else {
-				ModClientEventHandler.guiToDisplay = new MainGUI();
+				ModClientEventHandler.guiToDisplay = new NewMainGUI();
 				PrintUtils.print(HypixelMod.BASE_MESSAGE_START + "This is a main command of Hypixel Mod!");
 			}
 		}

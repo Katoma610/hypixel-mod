@@ -8,7 +8,7 @@ public class ShowInvisiblePlayers extends Module {
     public static boolean isToggled = false;
 
     public ShowInvisiblePlayers() {
-        super("Show Invisible Players", Category.RENDER);
+        super("Invis. Players", Category.RENDER);
     }
 
     @Override

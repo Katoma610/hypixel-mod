@@ -10,7 +10,7 @@ import com.doranexius.hypixelmod.modules.render.esp.PlayerESP;
 import com.doranexius.hypixelmod.overlays.ArmorHUDOverlay;
 import com.doranexius.hypixelmod.proxy.CommonProxy;
 
-import com.doranexius.hypixelmod.utils.HypixelUtils.FairyGrottoScanner;
+import com.doranexius.hypixelmod.modules.render.FairyGrottoScanner;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -19,7 +19,6 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
 @Mod(name = HypixelMod.NAME, modid = HypixelMod.MODID, version = HypixelMod.VERSION, clientSideOnly = true)
 public class HypixelMod
@@ -45,18 +44,13 @@ public class HypixelMod
     	ModuleManager.newMod(new Fullbright());
     	ModuleManager.newMod(new ShowInvisibleEntities());
         ModuleManager.newMod(new ShowInvisiblePlayers());
-        ModuleManager.newMod(fairyGrottoInstance);
         ModuleManager.newMod(new Nametags());
-    	
     	
     	// HUD Modules
     	ModuleManager.newMod(new ArmorHUDOverlay());
-    	
-    	// Add all module lists to the main module list
-    	//ModuleManager.mergeModList(ModuleManager.getRenderModList());
-    	
-    	
-    	
+
+        // HYPIXEL Modules
+        ModuleManager.newMod(fairyGrottoInstance);
     }
     
     @EventHandler

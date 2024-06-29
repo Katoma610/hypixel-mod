@@ -11,6 +11,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.player.EntityPlayer;
 
+import java.util.Map;
+
 public class PlayerESP extends Module {
 
 	public PlayerESP() {

@@ -12,7 +12,7 @@ public class ArmorHUDOverlay extends Module {
 	private static boolean isToggled = false;
 
 	public ArmorHUDOverlay() {
-		super("ArmorHUD", Category.HUD);
+		super("Armor HUD", Category.HUD);
 	}
 
 	public static void renderArmorOverlay() {

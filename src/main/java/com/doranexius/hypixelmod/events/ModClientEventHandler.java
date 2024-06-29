@@ -1,8 +1,5 @@
 package com.doranexius.hypixelmod.events;
 
-import com.doranexius.hypixelmod.utils.HypixelUtils.FairyGrottoScanner;
-import com.doranexius.hypixelmod.utils.HypixelUtils.SkyblockInfo;
-import com.doranexius.hypixelmod.utils.PrintUtils;
 import com.doranexius.hypixelmod.utils.ScoreboardManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -13,7 +10,6 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import org.lwjgl.opengl.GL11;
 import com.doranexius.hypixelmod.*;
 import com.doranexius.hypixelmod.cosmetics.HatCosmetic;
 import com.doranexius.hypixelmod.modules.Category;

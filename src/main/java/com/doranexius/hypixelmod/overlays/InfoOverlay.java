@@ -82,4 +82,8 @@ public class InfoOverlay extends GuiIngame {
 	public static int getCurrentGradientColor() {
 		return currentColor;
 	}
+
+	public static int[] getColorCodes() {
+		return colorCodes;
+	}
 }
