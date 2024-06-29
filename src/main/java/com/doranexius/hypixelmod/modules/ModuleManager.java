@@ -1,15 +1,6 @@
 package com.doranexius.hypixelmod.modules;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-
-import javax.swing.plaf.basic.BasicComboBoxUI.KeyHandler;
-
-import org.lwjgl.input.Keyboard;
-import net.minecraft.client.settings.KeyBinding;
-
-import com.doranexius.hypixelmod.modules.render.esp.MobESP;
-import com.mojang.realmsclient.dto.RealmsServer.McoServerComparator;
 
 public class ModuleManager {
 	

@@ -56,7 +56,7 @@ public class OldMainGUI extends GuiScreen {
 				y = height / 2 - 160;
 			}
 			
-			ToggleButton button = new ToggleButton(id, x, y, false, module.getCategory());
+			ToggleButton button = new ToggleButton(id, x, y, false, module.getCategory(), module, module.getName());
 			if (ModuleManager.getModList().get(id - toggleButtonStartIndex).isToggled()) {
 				button.toggle();
 			}

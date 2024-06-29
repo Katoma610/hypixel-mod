@@ -11,7 +11,7 @@ public class Module {
 	private String name;
 	private boolean toggled;
 	private Category category;
-	private HashMap<String, Boolean> options = new HashMap<>();
+	protected HashMap<String, Boolean> options = new HashMap<>();
 	
 	public Module(String name, Category c) {
 		this.name = name;
@@ -55,5 +55,9 @@ public class Module {
 
 	public HashMap<String, Boolean> getOptions() {
 		return options;
+	}
+
+	public void setOption(String key, Boolean value) {
+		this.options.put(key, value);
 	}
 }

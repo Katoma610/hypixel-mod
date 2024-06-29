@@ -4,9 +4,7 @@ import com.doranexius.hypixelmod.commands.MainCommand;
 import com.doranexius.hypixelmod.events.ModClientEventHandler;
 import com.doranexius.hypixelmod.modules.ModuleManager;
 import com.doranexius.hypixelmod.modules.render.*;
-import com.doranexius.hypixelmod.modules.render.esp.ChestESP;
-import com.doranexius.hypixelmod.modules.render.esp.MobESP;
-import com.doranexius.hypixelmod.modules.render.esp.PlayerESP;
+import com.doranexius.hypixelmod.modules.render.ESP;
 import com.doranexius.hypixelmod.overlays.ArmorHUDOverlay;
 import com.doranexius.hypixelmod.proxy.CommonProxy;
 
@@ -37,9 +35,9 @@ public class HypixelMod
     
     public void startClient() {
     	// RENDER Modules
-    	ModuleManager.newMod(new MobESP());
-    	ModuleManager.newMod(new ChestESP());
-    	ModuleManager.newMod(new PlayerESP());
+    	ModuleManager.newMod(new ESP());
+    	//ModuleManager.newMod(new ChestESP());
+    	//ModuleManager.newMod(new PlayerESP());
     	ModuleManager.newMod(new Tracers());
     	ModuleManager.newMod(new Fullbright());
     	ModuleManager.newMod(new ShowInvisibleEntities());

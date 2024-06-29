@@ -37,7 +37,7 @@ public class DropdownToggle extends GuiButton {
         int startY = this.buttonY + this.height + 17;
         if (!options.isEmpty()) {
             for (String key : options.keySet()) {
-                this.buttons.add(new ToggleButton(id, this.buttonX + this.width / 2 + 30, startY, options.get(key), this.module.getCategory()));
+                this.buttons.add(new ToggleButton(id, this.buttonX + this.width / 2 + 30, startY, options.get(key), this.module.getCategory(), this.module, key));
                 ++id;
                 startY += 20;
             }
