@@ -3,9 +3,11 @@ package com.doranexius.hypixelmod;
 import com.doranexius.hypixelmod.commands.MainCommand;
 import com.doranexius.hypixelmod.events.ModClientEventHandler;
 import com.doranexius.hypixelmod.modules.ModuleManager;
+import com.doranexius.hypixelmod.modules.hud.HUDEditor;
 import com.doranexius.hypixelmod.modules.render.*;
 import com.doranexius.hypixelmod.modules.render.ESP;
 import com.doranexius.hypixelmod.overlays.ArmorHUDOverlay;
+import com.doranexius.hypixelmod.overlays.InventoryOverlay;
 import com.doranexius.hypixelmod.proxy.CommonProxy;
 
 import com.doranexius.hypixelmod.modules.render.FairyGrottoScanner;
@@ -46,6 +48,8 @@ public class HypixelMod
     	
     	// HUD Modules
     	ModuleManager.newMod(new ArmorHUDOverlay());
+        ModuleManager.newMod(new InventoryOverlay());
+        ModuleManager.newMod(new HUDEditor());
 
         // HYPIXEL Modules
         ModuleManager.newMod(fairyGrottoInstance);

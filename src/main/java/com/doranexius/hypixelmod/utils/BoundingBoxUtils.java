@@ -9,7 +9,7 @@ public class BoundingBoxUtils {
 	public static void renderBoundingBox(double width, double height, double r, double g, double b) {
 		// Some necessary properties
 		GlStateManager.pushMatrix();
-		GL11.glColor3d(r, g, b);
+		GL11.glColor3d(r / 255, g / 255, b / 255);
 	    GL11.glLineWidth(2.0f);
 	    
 		// Top Part

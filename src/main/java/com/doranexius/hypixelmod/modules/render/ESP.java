@@ -31,6 +31,8 @@ public class ESP extends Module {
 			put("Passive", false);
 			put("Players", false);
 			put("Chests", false);
+			put("TeamSplit", false);
+			put("Invisible", false);
 		}});
 	}
 	
@@ -54,11 +56,29 @@ public class ESP extends Module {
     		lastZ = -entity.posZ;
 
 			if (this.options.get("Hostile") && entity.isCreatureType(EnumCreatureType.MONSTER, false)) {
-				BoundingBoxUtils.renderBoundingBox(1, 2, 255, 0, 0);
-			} else if (this.options.get("Passive") && !entity.isCreatureType(EnumCreatureType.MONSTER, false) && !entity.equals(Minecraft.getMinecraft().thePlayer)) {
-				BoundingBoxUtils.renderBoundingBox(1, 2, 0, 255, 0);
+				BoundingBoxUtils.renderBoundingBox(1, 2, 120, 0, 0);
+			} else if (this.options.get("Passive") && !entity.isCreatureType(EnumCreatureType.MONSTER, false) && entity.isCreatureType(EnumCreatureType.CREATURE, false) && !entity.equals(Minecraft.getMinecraft().thePlayer)) {
+				BoundingBoxUtils.renderBoundingBox(1, 2, 170, 0, 165);
 			} else if (this.options.get("Players") && (entity instanceof EntityPlayer || entity instanceof EntityPlayerMP || entity instanceof EntityPlayerSP) && !entity.equals(Minecraft.getMinecraft().thePlayer)) {
-				BoundingBoxUtils.renderBoundingBox(1, 2, 0, 0, 255);
+				boolean isOnCrimTeam = Minecraft.getMinecraft().thePlayer.getDisplayName().getFormattedText().contains("§4");
+
+				if (this.options.get("Invisible") && entity.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer)) {
+					BoundingBoxUtils.renderBoundingBox(1, 2, 0, 0, 255);
+				} else if (this.options.get("TeamSplit") && entity.getDisplayName().getFormattedText().contains("§3") && !entity.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer)) {
+					if (isOnCrimTeam) {
+						BoundingBoxUtils.renderBoundingBox(1, 2, 255, 0, 0);
+					} else {
+						BoundingBoxUtils.renderBoundingBox(1, 2, 0, 255, 0);
+					}
+				} else if (this.options.get("TeamSplit") && entity.getDisplayName().getFormattedText().contains("§4") && !entity.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer)) {
+					if (isOnCrimTeam) {
+						BoundingBoxUtils.renderBoundingBox(1, 2, 0, 255, 0);
+					} else {
+						BoundingBoxUtils.renderBoundingBox(1, 2, 255, 0, 0);
+					}
+				} else if (!entity.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer)) {
+					BoundingBoxUtils.renderBoundingBox(1, 2, 0, 0, 255);
+				}
 			}
 	    }
 

@@ -33,7 +33,7 @@ public class FairyGrottoScanner extends Module {
     private static int grottoNum = 1;
 
     public FairyGrottoScanner() {
-        super("Grotto Find", Category.HYPIXEL);
+        super("Grotto Finder", Category.HYPIXEL);
     }
 
     @SubscribeEvent

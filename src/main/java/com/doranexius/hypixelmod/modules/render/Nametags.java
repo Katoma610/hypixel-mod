@@ -5,26 +5,35 @@ import com.doranexius.hypixelmod.modules.Module;
 import com.doranexius.hypixelmod.utils.TextUtils;
 import com.doranexius.hypixelmod.utils.WaypointUtils;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 
+import java.util.HashMap;
+
 public class Nametags extends Module {
 
     public Nametags() {
-        super("Nametags", Category.RENDER);
+        super("Nametags", Category.RENDER, new HashMap<String, Boolean>() {{
+            put("Health", false);
+        }});
     }
 
-    public static void drawNametags(float partialTicks) {
-
+    public void drawNametags(float partialTicks) {
         for (EntityPlayer player : Minecraft.getMinecraft().theWorld.playerEntities) {
-            if (player.getDisplayNameString().contains(" ") || player.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer) || player.equals(Minecraft.getMinecraft().thePlayer)) continue;
-
-            nametagsUtil(player.getName(), player.posX, player.posY, player.posZ, partialTicks);
+            //player.refreshDisplayName(); player.getDisplayName().getFormattedText().contains(" ") || 
+            if (player.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer) || player.equals(Minecraft.getMinecraft().thePlayer)) continue;
+            float health = Math.round(player.getHealth());
+            if (this.options.get("Health")) {
+                nametagsUtil(player.getDisplayName().getFormattedText() + " " + String.format("§f[§c%.0f§f]", health), player.posX, player.posY, player.posZ, partialTicks);
+            } else {
+                nametagsUtil(player.getDisplayName().getFormattedText(), player.posX, player.posY, player.posZ, partialTicks);
+            }
         }
     }
 
-    private static void nametagsUtil(String str, double playerX, double playerY, double playerZ, float partialTicks){
+    private void nametagsUtil(String str, double playerX, double playerY, double playerZ, float partialTicks){
         GlStateManager.alphaFunc(516, 0.1F);
 
         GlStateManager.pushMatrix();

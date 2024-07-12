@@ -1,14 +1,19 @@
 package com.doranexius.hypixelmod.events;
 
+import com.doranexius.hypixelmod.gui.HUDEditorGUI;
+import com.doranexius.hypixelmod.gui.NewMainGUI;
+import com.doranexius.hypixelmod.overlays.InventoryOverlay;
 import com.doranexius.hypixelmod.utils.ScoreboardManager;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiChat;
+import net.minecraft.client.gui.GuiNewChat;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
+import net.minecraftforge.client.event.*;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import com.doranexius.hypixelmod.*;
 import com.doranexius.hypixelmod.cosmetics.HatCosmetic;
@@ -20,10 +25,13 @@ import com.doranexius.hypixelmod.modules.render.waypoints.RenderWaypoints;
 import com.doranexius.hypixelmod.modules.render.waypoints.WaypointManager;
 import com.doranexius.hypixelmod.overlays.ArmorHUDOverlay;
 import com.doranexius.hypixelmod.overlays.InfoOverlay;
+import org.lwjgl.input.Mouse;
 
 public class ModClientEventHandler {
 	
 	public static GuiScreen guiToDisplay = null;
+	public static int mouseX = 0;
+	public static int mouseY = 0;
 
 	@SubscribeEvent
 	public void onPlayerJoinWorld(EntityJoinWorldEvent event) {
@@ -90,16 +98,22 @@ public class ModClientEventHandler {
 		      return;
 		}
 
-		if (!(mc.currentScreen == null) && !mc.ingameGUI.getChatGUI().getChatOpen()) {
-		      return;
+		if (InventoryOverlay.getToggled() && (mc.currentScreen instanceof HUDEditorGUI || mc.currentScreen == null || mc.ingameGUI.getChatGUI().getChatOpen())) {
+			InventoryOverlay.renderInventory(mouseX, mouseY);
 		}
+
+//		if (!(mc.currentScreen == null) && !mc.ingameGUI.getChatGUI().getChatOpen()) {
+//		      return;
+//		}
+
+
 
 		final EntityPlayer player = mc.thePlayer;
 		if (player == null || player.capabilities.isCreativeMode || player.isSpectator()) {
 		      return;
 		}
 		
-		if (ArmorHUDOverlay.getToggled()) {
+		if (ArmorHUDOverlay.getToggled() && (mc.currentScreen instanceof HUDEditorGUI || mc.currentScreen instanceof NewMainGUI || mc.currentScreen == null || mc.ingameGUI.getChatGUI().getChatOpen())) {
 			ArmorHUDOverlay.renderArmorOverlay();
 		}
 	}
@@ -107,5 +121,17 @@ public class ModClientEventHandler {
 	@SubscribeEvent
 	public void onTick(TickEvent.ClientTickEvent event) {
 		ScoreboardManager.tick();
+	}
+
+	@SubscribeEvent
+	public void onMouseEvent(GuiScreenEvent.MouseInputEvent event) {
+		mouseX = Mouse.getEventX();
+		mouseY = Mouse.getEventY();
+//		System.out.println("X: " + mouseX);
+//		System.out.println("Y: " + mouseY);
+
+//		if (Mouse.isButtonDown(0)) {
+//
+//		}
 	}
 }
