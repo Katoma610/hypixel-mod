@@ -30,7 +30,6 @@ public class InventoryOverlay extends Module {
         super("Inventory", Category.HUD);
     }
 
-    // TODO: Implement overlay dragging while chat is open
     public static void renderInventory(int mouseX, int mouseY) {
         EntityPlayer player = Minecraft.getMinecraft().thePlayer;
         InventoryPlayer inventory = player.inventory;

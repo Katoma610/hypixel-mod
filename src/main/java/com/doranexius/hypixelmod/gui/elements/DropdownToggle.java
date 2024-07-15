@@ -60,7 +60,7 @@ public class DropdownToggle extends GuiButton {
             //GlStateManager.scale(0.95, 0.95, 1);
 
             for (String key : options.keySet()) {
-                drawString(Minecraft.getMinecraft().fontRendererObj, key, this.buttonX + this.width / 2 - 30, startY, 0xFFFFFFFF);
+                drawString(Minecraft.getMinecraft().fontRendererObj, key, this.buttonX + this.width / 2 - 35, startY, 0xFFFFFFFF);
                 startY += 20;
             }
 

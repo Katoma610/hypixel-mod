@@ -33,6 +33,7 @@ public class ESP extends Module {
 			put("Chests", false);
 			put("TeamSplit", false);
 			put("Invisible", false);
+			put("§6Starred§f", false);
 		}});
 	}
 	
@@ -79,6 +80,10 @@ public class ESP extends Module {
 				} else if (!entity.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer)) {
 					BoundingBoxUtils.renderBoundingBox(1, 2, 0, 0, 255);
 				}
+			} else if (this.options.get("§6Starred§f") && entity.getDisplayName().getFormattedText().contains("✯")) {
+				GL11.glTranslated(0, -2, 0);
+				BoundingBoxUtils.renderBoundingBox(1, 2, 245, 170, 39);
+				GL11.glTranslated(0, 2, 0);
 			}
 	    }
 
