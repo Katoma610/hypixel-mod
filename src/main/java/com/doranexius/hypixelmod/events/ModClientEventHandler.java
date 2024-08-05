@@ -47,7 +47,7 @@ public class ModClientEventHandler {
 	
 	@SubscribeEvent
 	public void onLastEvent(RenderWorldLastEvent event) {
-		HatCosmetic.drawHat(event.partialTicks);
+		//HatCosmetic.drawHat(event.partialTicks);
 
 //		GL11.glPushMatrix();
 //		GL11.glDisable(GL11.GL_LIGHTING);
@@ -57,7 +57,7 @@ public class ModClientEventHandler {
 		
 		for (Module module : ModuleManager.getModList()) {
 			Category modCategory = module.getCategory();
-			if (modCategory.equals(Category.RENDER) && module.isToggled()) {
+			if ((modCategory.equals(Category.RENDER) || modCategory.equals(Category.COSMETIC)) && module.isToggled()) {
 				module.onEnable(event.partialTicks);
 			}
 		}

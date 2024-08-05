@@ -1,6 +1,7 @@
 package com.doranexius.hypixelmod;
 
 import com.doranexius.hypixelmod.commands.MainCommand;
+import com.doranexius.hypixelmod.cosmetics.HatCosmetic;
 import com.doranexius.hypixelmod.events.ModClientEventHandler;
 import com.doranexius.hypixelmod.modules.ModuleManager;
 import com.doranexius.hypixelmod.modules.hud.HUDEditor;
@@ -38,8 +39,6 @@ public class HypixelMod
     public void startClient() {
     	// RENDER Modules
     	ModuleManager.newMod(new ESP());
-    	//ModuleManager.newMod(new ChestESP());
-    	//ModuleManager.newMod(new PlayerESP());
     	ModuleManager.newMod(new Tracers());
     	ModuleManager.newMod(new Fullbright());
     	ModuleManager.newMod(new ShowInvisibleEntities());
@@ -53,6 +52,9 @@ public class HypixelMod
 
         // HYPIXEL Modules
         ModuleManager.newMod(fairyGrottoInstance);
+
+        // COSMETIC Modules
+        ModuleManager.newMod(new HatCosmetic());
     }
     
     @EventHandler
